@@ -1,11 +1,751 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Meine Portfolio Website</title>
+<!DOCTYPE html><html lang="de"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daniel Weiskopf — Entwicklungsingenieur · Wärmepumpen &amp; Regelungstechnik</title>
+  <meta name="description" content="Daniel Weiskopf — Entwicklungsingenieur mit Schwerpunkt Steuerungs- und Regelungstechnik für Wärmepumpen. Haag, Niederösterreich.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    :root {
+      --accent:   #2f5d3f;
+      --accent-2: #c1d4be;
+      --warm:     #c87c4f;
+      --bg:       #faf8f4;
+      --bg-2:     #f1ede4;
+      --card:     #ffffff;
+      --ink:      #14201a;
+      --ink-2:    #4d5a52;
+      --ink-3:    #8a948c;
+      --line:     #e1ddd2;
+      --line-2:   #cdc8ba;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(250,248,244,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 14px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--serif);
+      font-size: 17px; font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .logo-mark {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent);
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .logo-arc {
+      width: 14px; height: 7px;
+      border: 2px solid var(--bg);
+      border-bottom: none;
+      border-radius: 14px 14px 0 0;
+      transform: translateY(2px);
+      display: block;
+    }
+    .nav-links {
+      display: flex; gap: 28px; align-items: center;
+      font-size: 14px; color: var(--ink-2);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      padding: 8px 16px;
+      background: var(--ink);
+      color: var(--bg) !important;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+    .nav-cta:hover { background: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1200px; margin: 0 auto;
+      padding: 80px 32px 100px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px; letter-spacing: 0.08em;
+      color: var(--accent); text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1px solid var(--accent-2);
+      border-radius: 100px;
+      background: rgba(193,212,190,0.2);
+      margin-bottom: 28px;
+    }
+    .eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(47,93,63,.6);
+      animation: pulse 2s infinite;
+      display: inline-block;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(47,93,63,.6); }
+      50%      { box-shadow: 0 0 0 6px rgba(47,93,63,0); }
+    }
+    h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin: 0 0 24px 0;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 19px; color: var(--ink-2);
+      line-height: 1.55; max-width: 56ch;
+      margin: 0 0 36px 0;
+    }
+    .hero-actions {
+      display: flex; gap: 12px;
+      margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 100px;
+      font-size: 14px; font-weight: 500;
+      transition: transform .15s, background .15s, color .15s;
+    }
+    .btn-primary { background: var(--ink); color: var(--bg); }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+    .btn-ghost { border: 1px solid var(--line-2); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+    .btn svg { flex-shrink: 0; }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(3, auto);
+      gap: 32px; padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .stat-n {
+      font-family: var(--serif); font-size: 32px;
+      color: var(--ink); letter-spacing: -0.02em; line-height: 1;
+    }
+    .stat-l {
+      font-size: 12px; color: var(--ink-3);
+      margin-top: 6px; max-width: 18ch; line-height: 1.35;
+    }
+
+    /* hero card */
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 1px 0 rgba(20,32,26,0.02), 0 12px 30px -12px rgba(20,32,26,0.08);
+    }
+    .portrait {
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg,#d4dccc 0%,#a8b8a3 100%);
+      overflow: hidden;
+    }
+    .portrait img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero-meta { padding: 20px 24px; }
+    .meta-row {
+      display: flex; justify-content: space-between;
+      padding: 10px 0; font-size: 13.5px;
+      border-bottom: 1px solid var(--line);
+    }
+    .meta-row:last-child { border-bottom: none; }
+    .meta-k {
+      font-family: var(--mono); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ink-3);
+    }
+
+
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1200px; margin: 0 auto;
+      padding: 100px 32px;
+    }
+    .section.bg-2 { background: var(--bg-2); max-width: 100%; }
+    .section.bg-2 .section-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 32px;
+    }
+    .sec-head { margin-bottom: 56px; max-width: 720px; }
+    .sec-kicker {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--accent); letter-spacing: 0.08em; margin-bottom: 12px;
+    }
+    .sec-title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(32px, 3.6vw, 48px);
+      margin: 0 0 14px 0; letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .sec-sub { font-size: 17px; color: var(--ink-2); }
+
+    /* ── WORK ── */
+    .work-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .work-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px; padding: 28px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 20px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      cursor: default;
+    }
+    .work-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px -16px rgba(47,93,63,0.18);
+    }
+    .work-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--mono); font-size: 12px;
+      color: var(--ink-3); letter-spacing: 0.05em;
+    }
+    .work-n { color: var(--accent); font-weight: 500; }
+    .work-kind {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--ink-3); letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .work-title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: 26px; margin: 0 0 10px 0;
+      letter-spacing: -0.015em; line-height: 1.18;
+    }
+    .work-text {
+      font-size: 15px; color: var(--ink-2);
+      margin: 0 0 16px 0; line-height: 1.55;
+    }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px;
+      padding: 3px 9px; background: var(--bg-2);
+      color: var(--ink-2); border-radius: 100px;
+    }
+    .work-metric {
+      border-top: 1px dashed var(--line-2);
+      padding-top: 16px;
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+    }
+    .metric-n {
+      font-family: var(--serif); font-size: 28px;
+      color: var(--accent); letter-spacing: -0.02em;
+    }
+    .metric-l {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--ink-3); text-transform: uppercase;
+      letter-spacing: 0.05em; text-align: right; max-width: 18ch;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 60px;
+    }
+    .about-text p {
+      font-size: 17px; color: var(--ink-2);
+      line-height: 1.65; margin: 0 0 18px 0; max-width: 56ch;
+    }
+    .about-text strong { color: var(--ink); font-weight: 600; }
+    .about-pull {
+      font-family: var(--serif); font-style: italic;
+      font-size: 22px !important; color: var(--ink) !important;
+      border-left: 2px solid var(--accent);
+      padding-left: 18px; margin-top: 28px !important;
+    }
+
+    /* timeline */
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before {
+      content: ""; position: absolute;
+      left: 5px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--line-2);
+    }
+    .tl-item { position: relative; padding: 14px 0 14px 16px; }
+    .tl-dot {
+      position: absolute; left: -24px; top: 18px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--bg-2); border: 2px solid var(--line-2);
+    }
+    .tl-item.active .tl-dot {
+      background: var(--accent); border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(47,93,63,0.15);
+    }
+    .tl-y {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--ink-3); letter-spacing: 0.05em; margin-bottom: 4px;
+    }
+    .tl-t { font-family: var(--serif); font-size: 18px; color: var(--ink); line-height: 1.25; }
+    .tl-sub { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
+
+    /* ── NOW ── */
+    .now-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .now-item {
+      padding: 24px; background: var(--card);
+      border: 1px solid var(--line); border-radius: 14px;
+      transition: border-color .2s, transform .2s;
+    }
+    .now-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .now-ic { font-size: 22px; color: var(--accent); margin-bottom: 14px; }
+    .now-head {
+      font-family: var(--serif); font-size: 18px;
+      margin-bottom: 8px; letter-spacing: -0.01em;
+    }
+    .now-item p { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.5; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--ink); color: var(--bg); }
+    .contact-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 100px 32px 40px;
+    }
+    .contact-eyebrow {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--warm); letter-spacing: 0.08em; margin-bottom: 24px;
+    }
+    .contact-h {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(36px, 5.4vw, 72px);
+      line-height: 1.05; letter-spacing: -0.02em;
+      margin: 0 0 64px 0; max-width: 18ch;
+    }
+    .contact-h em { color: var(--warm); font-style: italic; }
+    .contact-links { display: grid; gap: 4px; max-width: 720px; }
+    .c-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 4px;
+      border-bottom: 1px solid rgba(225,221,210,0.15);
+      font-family: var(--serif); font-size: 24px;
+      transition: padding-left .25s, color .2s;
+    }
+    .c-link:hover { padding-left: 16px; color: var(--warm); }
+    .c-primary { font-size: 34px; color: var(--bg); }
+    .c-primary:hover { color: var(--warm); }
+    .c-handle {
+      font-family: var(--mono); font-size: 13px;
+      color: var(--ink-3); letter-spacing: 0.04em;
+    }
+    .foot {
+      margin-top: 80px; padding-top: 24px;
+      border-top: 1px solid rgba(225,221,210,0.15);
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .work-grid { grid-template-columns: 1fr; }
+      .now-grid { grid-template-columns: 1fr 1fr; }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .nav-inner { padding: 14px 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding: 48px 20px 64px; }
+      .section { padding: 64px 20px; }
+      .now-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .contact-inner { padding: 64px 20px 32px; }
+      .foot { flex-direction: column; gap: 8px; }
+    }
+  </style>
 </head>
-<body>
-  <h1>Hallo, ich bin Daniel</h1>
-  <p>Umwelt- & Energietechniker | Python | IoT</p>
-</body>
-</html>
+<body style="">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark"><span class="logo-arc"></span></span>
+      <span>Daniel Weiskopf</span>
+    </a>
+    <div class="nav-links">
+      <a href="#work">Projekte</a>
+      <a href="#about">Über mich</a>
+      <a href="#now">Aktuell</a>
+      <a href="#contact" class="nav-cta">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Niederösterreich · Offen für neue Herausforderungen
+      </div>
+      <h1>
+        Energietechnik aus Überzeugung — von der <em>Thermodynamik</em>
+        bis zur Regelung, die sie im Alltag zum Laufen bringt.
+      </h1>
+      <p class="hero-sub" style="">
+        Umwelt-, Verfahrens- und Energietechniker (MSc) — und seit Jahren
+        Entwicklungsingenieur für Wärmepumpen mit Schwerpunkt Steuerungs-
+        und Regelungstechnik. Tagsüber bringe ich Wärmepumpen bei, ein
+        bisschen effizienter zu werden. In der Freizeit am liebsten mit der Familie draußen
+        in der Natur, oder bei einem Konzert.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">
+          Projekte ansehen
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-n">10+</div>
+          <div class="stat-l">Jahre in Energie- und Verfahrenstechnik</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">MSc</div>
+          <div class="stat-l">Umwelt-, Verfahrens- und Energietechnik</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">2018</div>
+          <div class="stat-l">MSc-Abschluss am MCI Innsbruck</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="portrait">
+
+        <!-- Foto einbinden: Kommentar unten entfernen und Platzhalter-SVG auskommentieren -->
+        <!-- <img src="foto.jpg" alt="Daniel Weiskopf"> -->
+
+        <!-- Platzhalter — entfernen sobald Foto vorhanden -->
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="display:block;">
+          <defs>
+            <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#d4dccc"/>
+              <stop offset="100%" stop-color="#a8b8a3"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#pg)"/>
+          <g stroke="rgba(47,93,63,0.08)" stroke-width="1">
+            <line x1="0" y1="62.5" x2="400" y2="62.5"/>
+            <line x1="0" y1="125" x2="400" y2="125"/>
+            <line x1="0" y1="187.5" x2="400" y2="187.5"/>
+            <line x1="0" y1="250" x2="400" y2="250"/>
+            <line x1="0" y1="312.5" x2="400" y2="312.5"/>
+            <line x1="0" y1="375" x2="400" y2="375"/>
+            <line x1="0" y1="437.5" x2="400" y2="437.5"/>
+            <line x1="50" y1="0" x2="50" y2="500"/>
+            <line x1="100" y1="0" x2="100" y2="500"/>
+            <line x1="150" y1="0" x2="150" y2="500"/>
+            <line x1="200" y1="0" x2="200" y2="500"/>
+            <line x1="250" y1="0" x2="250" y2="500"/>
+            <line x1="300" y1="0" x2="300" y2="500"/>
+            <line x1="350" y1="0" x2="350" y2="500"/>
+          </g>
+          <circle cx="200" cy="185" r="72" fill="rgba(47,93,63,0.18)"/>
+          <ellipse cx="200" cy="370" rx="110" ry="80" fill="rgba(47,93,63,0.14)"/>
+          <rect x="20" y="456" width="130" height="24" rx="4" fill="rgba(255,255,255,0.55)"/>
+          <text x="28" y="472" font-family="ui-monospace,monospace" font-size="11" fill="rgba(20,32,26,0.45)" letter-spacing="0.05em">[ Foto · folgt ]</text>
+        </svg>
+
+      </div>
+      <div class="hero-meta">
+        <div class="meta-row">
+          <span class="meta-k">Standort</span>
+          <span>Haag, Niederösterreich 🇦🇹</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-k">Aktuell</span>
+          <span>Wärmepumpen · Smart Home · API</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-k">Interesse an</span>
+          <span>Energie · IoT · Natur · Musik</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="sec-head">
+    <div class="sec-kicker">— 01</div>
+    <h2 class="sec-title">Ausgewählte Projekte</h2>
+    <div class="sec-sub" style="">Was ich entworfen, geregelt oder vermessen habe.</div>
+  </div>
+  <div class="work-grid">
+
+<article class="work-card">
+      <div class="work-head">
+        <span class="work-n" style="">01</span>
+        <span style=""><span style="letter-spacing: 0.6px;">2025 →</span></span></div>
+      <div class="work-body">
+        <div class="work-kind">Privatprojekt · eigenes Haus</div>
+        <h3 class="work-title">Ladeoptimierung des PV-Batteriespeichers</h3>
+        <p class="work-text">Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiserträge maximiert und der Netzbezug minimiert werden.</p>
+        <div class="work-tags">
+          <span class="tag" style="">Python</span>
+          <span class="tag" style="">API</span>
+          <span class="tag" style="">Prüfstand</span>
+        </div>
+      </div>
+      <div class="work-metric">
+        <div class="metric-n" style=""><br></div>
+        <div class="metric-l" style="">Energieoptimierung</div>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-head">
+        <span class="work-n" style="">02</span>
+        <span style="">2026 →</span>
+      </div>
+      <div class="work-body">
+        <div class="work-kind">Privatprojekt · eigenes Haus</div>
+        <h3 class="work-title" style="">Telemetrie und Energieoptmierung mittels Raspberry Pi Cluster</h3>
+        <p class="work-text">Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.</p>
+        <div class="work-tags">
+          <span class="tag" style="">Raspberry Pi</span>
+          <span class="tag">Python</span>
+          <span class="tag">Modbus</span>
+          <span class="tag">MQTT</span>
+          <span class="tag">API</span>
+        </div>
+      </div>
+      <div class="work-metric">
+        <div class="metric-n" style=""><br></div>
+        <div class="metric-l">Energiekosten Haushalt</div>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-head">
+        <span class="work-n" style="">03</span>
+        <span>2018</span>
+      </div>
+      <div class="work-body">
+        <div class="work-kind">Forschung · MCI Innsbruck</div>
+        <h3 class="work-title">Thermochemische Energiespeicherung am Beispiel des Mg(OH)<sub>2</sub>/MgO-Reaktionsnetzwerkes</h3>
+        <p class="work-text">Untersuchung des Speichermediums sowie aufbau eines Testreaktors</p>
+        <div class="work-tags">
+          <span class="tag">Matlab</span>
+          <span class="tag">Versuchsaufbau</span>
+          <span class="tag">Simulation</span>
+        </div>
+      </div>
+      <div class="work-metric">
+        <div class="metric-n" style=""><br></div>
+        <div class="metric-l" style="">Energiewende</div>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-head">
+        <span class="work-n">04</span>
+        <span>2024 →</span>
+      </div>
+      <div class="work-body">
+        <div class="work-kind">Privatprojekt · Hausgarten</div>
+        <h3 class="work-title">Smartes Gewächshaus</h3>
+        <p class="work-text">Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon — und genau das ist der Punkt.</p>
+        <div class="work-tags">
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Python</span>
+          <span class="tag">Relais</span>
+          <span class="tag">Sensorik</span>
+        </div>
+      </div>
+      <div class="work-metric">
+        <div class="metric-n">24/7</div>
+        <div class="metric-l">autonom</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="section bg-2" id="about" style="padding: 100px 0;">
+  <div class="section-inner">
+    <div class="sec-head">
+      <div class="sec-kicker">— 02</div>
+      <h2 class="sec-title">Über mich</h2>
+      <div class="sec-sub">Die Kurzfassung.</div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p style="">
+          Aufgewachsen in den Alpen, wo man die Gletscher Jahr für
+          Jahr nach oben wandern sieht — abstrakt fühlte sich das
+          Klimathema von dort aus nie an. Auch das war ein Grund weshalb ich Umwelt-, Verfahrens-, und Energietechnik studiert habe.</p>
+        <p style="">
+          Seit 2019 arbeite ich bei einem Wärmepumpenhersteller in der
+          Entwicklung. Mein Bereich: <strong>Steuerung und Regelung</strong>
+          — Firmware, Regelkreise, Zustandsmaschinen und die Felddaten,
+          an denen sich zeigt, ob die Theorie gestimmt hat, sowie 3rd Level Support der Techniker im Feld.
+        </p>
+        <p style="">
+          Wenn ich nicht am Schreibtisch sitze, bin ich am liebsten draußen
+          in der Natur — wandern, am Berg, in der Wand am Kletterturm oder einfach an der frischen Luft in unserem Garten.
+          Genauso wichtig: Musik. Ich höre breit und gehe so oft auf
+          Konzerte, wie es geht — live klingt eben doch anders.
+        </p>
+        <p style="">
+          Daneben entstehen viele Bastelprojekte: ein Raspberry Pi, der
+          Wetterdaten über eine API in die Ladelogik meines
+          Fronius-Wechselrichters einbindet, und ein Terminal-Display
+          für alle Haustechnik-Kennzahlen. Nicht weil es sein muss,
+          sondern weil es Spaß macht.
+        </p>
+        <p class="about-pull" style="">
+          Mir geht es um eine lebenswerte Zukunft für die nächste
+          Generation. Das bin ich meinen Kindern schuldig.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item active">
+          <div class="tl-dot"></div>
+          <div class="tl-y">seit 2019</div>
+          <div class="tl-t" style="">Entwicklungsingenieur</div>
+          <div class="tl-sub" style="">Wärmepumpen · Steuerung &amp; Regelung</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-y" style="">2016 — 2018</div>
+          <div class="tl-t" style="">MSc, Umwelt-, Verfahrens- und Energietechnik</div>
+          <div class="tl-sub" style="">Wärmepumpen · Steuerung &amp; Regelung</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-y" style=""><span style="letter-spacing: 0.55px;">2016 — 2018</span></div>
+          <div class="tl-t" style="">BSc, Verfahrens- und Energietechnik</div>
+          <div class="tl-sub">MCI Innsbruck</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-y" style=""><span style="letter-spacing: 0.55px;">2013 — 2016</span></div>
+          <div class="tl-t">BSc, Verfahrens- und Energietechnik</div>
+          <div class="tl-sub">MCI Innsbruck</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-y" style="">2006 - 2013</div>
+          <div class="tl-t" style="">Inbetriebnahmetechniker</div>
+          <div class="tl-sub" style="">Industriedrucksysteme&nbsp;&nbsp;·&nbsp; Inbetriebnahme und Endabnahme</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NOW -->
+<section class="section" id="now">
+  <div class="sec-head">
+    <div class="sec-kicker">— 03</div>
+    <h2 class="sec-title">Aktuell</h2>
+    <div class="sec-sub">Stand: April 2026.</div>
+  </div>
+  <div class="now-grid">
+    <div class="now-item">
+      <div class="now-ic">◑</div>
+      <div class="now-head">Im Job</div>
+      <p style="">Entwicklung von neuen Wärmepumpensystemen, die die Energiewende antreiben.</p>
+    </div>
+    <div class="now-item">
+      <div class="now-ic">◐</div>
+      <div class="now-head">An der Werkbank</div>
+      <p style="">Zwei Projekte parallel: eine API-Bridge, die die Ladelogik meines Fronius-Batteriespeichers an die Wettervorhersage koppelt — und die Automatisierung des Gewächshauses (Bewässerung, Beschattung, Datenlogging).</p>
+    </div>
+    <div class="now-item">
+      <div class="now-ic">●</div>
+      <div class="now-head">Lese gerade</div>
+      <p>Christian Huber, „Solange ein Streichholz brennt". Daneben gerne Fachvideos zu Smart Home und erneuerbaren Energien — Stromspeicher, Wärmepumpen-Setups, kleine Bastellösungen aus der Community.</p>
+    </div>
+    <div class="now-item">
+      <div class="now-ic">○</div>
+      <div class="now-head">Suche</div>
+      <p style="">Ein Team, das echte Hardware für die Energiewende baut. Bevorzugt im Raum Linz, Steyr, Amstetten — oder remote.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-eyebrow">04 — Kontakt</div>
+    <h2 class="contact-h">
+      Lust auf ein Gespräch?<br>
+      <em>Schreib mir.</em>
+    </h2>
+    <div class="contact-links">
+      <!-- <a href="/cdn-cgi/l/email-protection#d6beb3babab996a1b3bfa5bdb9a6b0f8b2b3a0" class="c-link c-primary" style=""><span class="__cf_email__" data-cfemail="295e4c405a4246594f764d4847404c456941465d44484045074a4644">[email&#160;protected]</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a> -->
+      <a href="https://github.com/WeisDan" target="_blank" rel="noreferrer" class="c-link">
+        <span>GitHub</span>
+        <span class="c-handle">@WeisDan</span>
+      </a>
+      <a href="https://linkedin.com/in/daniel-weiskopf" target="_blank" rel="noreferrer" class="c-link">
+        <span>LinkedIn</span>
+        <span class="c-handle">/daniel-weiskopf</span>
+      </a>
+    </div>
+    <div class="foot">
+      <span>© 2026 Daniel Weiskopf</span>
+      <span>Handgemacht · GitHub Pages · keine Tracker</span>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body></html>
