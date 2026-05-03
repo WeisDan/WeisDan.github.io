@@ -217,17 +217,25 @@
     .work-grid {
       display: grid; gap: 16px;
       grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
     }
+    .work-grid { grid-template-rows: repeat(4, auto); }
     .work-card {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 16px; padding: 28px;
       display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 20px;
+      grid-template-rows: subgrid;
+      grid-row: span 4;
+      row-gap: 14px;
       transition: transform .25s, box-shadow .25s, border-color .25s;
       cursor: default;
     }
+    @supports not (grid-template-rows: subgrid) {
+      .work-card { grid-template-rows: auto auto 1fr auto; }
+    }
+    .work-lede { display: flex; flex-direction: column; gap: 10px; align-self: start; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 6px; align-self: end; }
     .work-card:hover {
       transform: translateY(-3px);
       border-color: var(--accent);
@@ -242,18 +250,17 @@
     .work-kind {
       font-family: var(--mono); font-size: 11px;
       color: var(--ink-3); letter-spacing: 0.06em;
-      text-transform: uppercase; margin-bottom: 10px;
+      text-transform: uppercase; margin: 0 0 6px 0;
     }
     .work-title {
       font-family: var(--serif); font-weight: 400;
-      font-size: 26px; margin: 0 0 10px 0;
+      font-size: 26px; margin: 0;
       letter-spacing: -0.015em; line-height: 1.18;
     }
     .work-text {
       font-size: 15px; color: var(--ink-2);
-      margin: 0 0 16px 0; line-height: 1.55;
+      margin: 0; line-height: 1.55;
     }
-    .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
       font-family: var(--mono); font-size: 11px;
       padding: 3px 9px; background: var(--bg-2);
@@ -527,16 +534,14 @@
       <div class="work-head">
         <span class="work-n" style="">01</span>
         <span style=""><span style="letter-spacing: 0.6px;">2025 →</span></span></div>
-      <div class="work-body">
-        <div class="work-kind">Privatprojekt · eigenes Haus</div>
+      <div class="work-lede"><div class="work-kind">Privatprojekt · eigenes Haus</div>
         <h3 class="work-title">Ladeoptimierung des PV-Batteriespeichers</h3>
-        <p class="work-text">Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiserträge maximiert und der Netzbezug minimiert werden.</p>
+        <p class="work-text">Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiserträge maximiert und der Netzbezug minimiert werden.</p></div>
         <div class="work-tags">
           <span class="tag" style="">Python</span>
           <span class="tag" style="">API</span>
           <span class="tag" style="">Prüfstand</span>
         </div>
-      </div>
       <div class="work-metric">
         <div class="metric-n" style=""><br></div>
         <div class="metric-l" style="">Energieoptimierung</div>
@@ -548,10 +553,9 @@
         <span class="work-n" style="">02</span>
         <span style="">2026 →</span>
       </div>
-      <div class="work-body">
-        <div class="work-kind">Privatprojekt · eigenes Haus</div>
+      <div class="work-lede"><div class="work-kind">Privatprojekt · eigenes Haus</div>
         <h3 class="work-title" style="">Telemetrie und Energieoptmierung mittels Raspberry Pi Cluster</h3>
-        <p class="work-text">Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.</p>
+        <p class="work-text">Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.</p></div>
         <div class="work-tags">
           <span class="tag" style="">Raspberry Pi</span>
           <span class="tag">Python</span>
@@ -559,7 +563,6 @@
           <span class="tag">MQTT</span>
           <span class="tag">API</span>
         </div>
-      </div>
       <div class="work-metric">
         <div class="metric-n" style=""><br></div>
         <div class="metric-l">Energiekosten Haushalt</div>
@@ -571,16 +574,14 @@
         <span class="work-n" style="">03</span>
         <span>2018</span>
       </div>
-      <div class="work-body">
-        <div class="work-kind">Forschung · MCI Innsbruck</div>
+      <div class="work-lede"><div class="work-kind">Forschung · MCI Innsbruck</div>
         <h3 class="work-title">Thermochemische Energiespeicherung am Beispiel des Mg(OH)<sub>2</sub>/MgO-Reaktionsnetzwerkes</h3>
-        <p class="work-text">Untersuchung des Speichermediums sowie Aufbau eines Testreaktors und Simulation dessen</p>
+        <p class="work-text">Untersuchung des Speichermediums sowie Aufbau eines Testreaktors und Simulation dessen</p></div>
         <div class="work-tags">
           <span class="tag">Matlab</span>
           <span class="tag">Versuchsaufbau</span>
           <span class="tag">Simulation</span>
         </div>
-      </div>
       <div class="work-metric">
         <div class="metric-n" style=""><br></div>
         <div class="metric-l" style="">Energiewende</div>
@@ -592,17 +593,15 @@
         <span class="work-n">04</span>
         <span>2024 →</span>
       </div>
-      <div class="work-body">
-        <div class="work-kind">Privatprojekt · Hausgarten</div>
+      <div class="work-lede"><div class="work-kind">Privatprojekt · Hausgarten</div>
         <h3 class="work-title">Smartes Gewächshaus</h3>
-        <p class="work-text">Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon — und genau das ist der Punkt.</p>
+        <p class="work-text">Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon — und genau das ist der Punkt.</p></div>
         <div class="work-tags">
           <span class="tag">Raspberry Pi</span>
           <span class="tag">Python</span>
           <span class="tag">Relais</span>
           <span class="tag">Sensorik</span>
         </div>
-      </div>
       <div class="work-metric">
         <div class="metric-n"></div>
         <div class="metric-l">autonom</div>
