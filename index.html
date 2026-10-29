@@ -1,835 +1,385 @@
-<!DOCTYPE html><html lang="de"><head>
+<!DOCTYPE html>
+<html>
+<head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Daniel Weiskopf — Entwicklungsingenieur · Wärmepumpen &amp; Regelungstechnik</title>
-  <meta name="description" content="Daniel Weiskopf — Entwicklungsingenieur mit Schwerpunkt Steuerungs- und Regelungstechnik für Wärmepumpen. Haag, Niederösterreich.">
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-
-    :root {
-      --accent:   #2f5d3f;
-      --accent-2: #c1d4be;
-      --warm:     #c87c4f;
-      --bg:       #faf8f4;
-      --bg-2:     #f1ede4;
-      --card:     #ffffff;
-      --ink:      #14201a;
-      --ink-2:    #4d5a52;
-      --ink-3:    #8a948c;
-      --line:     #e1ddd2;
-      --line-2:   #cdc8ba;
-      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
-      --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 20;
-      background: rgba(250,248,244,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 14px 32px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .logo {
-      display: flex; align-items: center; gap: 10px;
-      font-family: var(--serif);
-      font-size: 17px; font-weight: 500;
-      letter-spacing: -0.01em;
-    }
-    .logo-mark {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: var(--accent);
-      display: inline-flex; align-items: center; justify-content: center;
-    }
-    .logo-arc {
-      width: 14px; height: 7px;
-      border: 2px solid var(--bg);
-      border-bottom: none;
-      border-radius: 14px 14px 0 0;
-      transform: translateY(2px);
-      display: block;
-    }
-    .nav-links {
-      display: flex; gap: 28px; align-items: center;
-      font-size: 14px; color: var(--ink-2);
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-cta {
-      padding: 8px 16px;
-      background: var(--ink);
-      color: var(--bg) !important;
-      border-radius: 100px;
-      font-weight: 500;
-    }
-    .nav-cta:hover { background: var(--accent); }
-
-    /* ── HERO ── */
-    .hero {
-      max-width: 1200px; margin: 0 auto;
-      padding: 80px 32px 100px;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--mono);
-      font-size: 11px; letter-spacing: 0.08em;
-      color: var(--accent); text-transform: uppercase;
-      padding: 6px 12px;
-      border: 1px solid var(--accent-2);
-      border-radius: 100px;
-      background: rgba(193,212,190,0.2);
-      margin-bottom: 28px;
-    }
-    .eyebrow-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 0 rgba(47,93,63,.6);
-      animation: pulse 2s infinite;
-      display: inline-block;
-    }
-    @keyframes pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(47,93,63,.6); }
-      50%      { box-shadow: 0 0 0 6px rgba(47,93,63,0); }
-    }
-    h1 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(36px, 5vw, 60px);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      margin: 0 0 24px 0;
-    }
-    h1 em { font-style: italic; color: var(--accent); }
-    .hero-sub {
-      font-size: 19px; color: var(--ink-2);
-      line-height: 1.55; max-width: 56ch;
-      margin: 0 0 36px 0;
-    }
-    .hero-actions {
-      display: flex; gap: 12px;
-      margin-bottom: 48px; flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 20px; border-radius: 100px;
-      font-size: 14px; font-weight: 500;
-      transition: transform .15s, background .15s, color .15s;
-    }
-    .btn-primary { background: var(--ink); color: var(--bg); }
-    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-    .btn-ghost { border: 1px solid var(--line-2); color: var(--ink); }
-    .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
-    .btn svg { flex-shrink: 0; }
-
-    .stats {
-      display: grid; grid-template-columns: repeat(3, auto);
-      gap: 32px; padding-top: 24px;
-      border-top: 1px solid var(--line);
-    }
-    .stat-n {
-      font-family: var(--serif); font-size: 32px;
-      color: var(--ink); letter-spacing: -0.02em; line-height: 1;
-    }
-    .stat-l {
-      font-size: 12px; color: var(--ink-3);
-      margin-top: 6px; max-width: 18ch; line-height: 1.35;
-    }
-
-    /* hero card */
-    .hero-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px; overflow: hidden;
-      box-shadow: 0 1px 0 rgba(20,32,26,0.02), 0 12px 30px -12px rgba(20,32,26,0.08);
-    }
-    .portrait {
-      aspect-ratio: 4/5;
-      background: linear-gradient(135deg,#d4dccc 0%,#a8b8a3 100%);
-      overflow: hidden;
-    }
-    .portrait img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    .hero-meta { padding: 20px 24px; }
-    .meta-row {
-      display: flex; justify-content: space-between;
-      padding: 10px 0; font-size: 13.5px;
-      border-bottom: 1px solid var(--line);
-    }
-    .meta-row:last-child { border-bottom: none; }
-    .meta-k {
-      font-family: var(--mono); font-size: 11px;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--ink-3);
-    }
-
-
-
-    /* ── SECTIONS ── */
-    .section {
-      max-width: 1200px; margin: 0 auto;
-      padding: 100px 32px;
-    }
-    .section.bg-2 { background: var(--bg-2); max-width: 100%; }
-    .section.bg-2 .section-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 32px;
-    }
-    .sec-head { margin-bottom: 56px; max-width: 720px; }
-    .sec-kicker {
-      font-family: var(--mono); font-size: 12px;
-      color: var(--accent); letter-spacing: 0.08em; margin-bottom: 12px;
-    }
-    .sec-title {
-      font-family: var(--serif); font-weight: 400;
-      font-size: clamp(32px, 3.6vw, 48px);
-      margin: 0 0 14px 0; letter-spacing: -0.02em; line-height: 1.1;
-    }
-    .sec-sub { font-size: 17px; color: var(--ink-2); }
-
-    /* ── WORK ── */
-    .work-grid {
-      display: grid; gap: 16px;
-      grid-template-columns: 1fr 1fr;
-      grid-auto-rows: auto;
-    }
-    .work-grid { grid-template-rows: repeat(5, auto); }
-    .work-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px; padding: 28px;
-      display: grid;
-      grid-template-rows: subgrid;
-      grid-row: span 4;
-      row-gap: 14px;
-      transition: transform .25s, box-shadow .25s, border-color .25s;
-      cursor: default;
-    }
-    @supports not (grid-template-rows: subgrid) {
-      .work-card { grid-template-rows: auto auto 1fr auto; }
-    }
-    .work-lede { display: flex; flex-direction: column; gap: 10px; align-self: start; }
-    .work-tags { display: flex; flex-wrap: wrap; gap: 6px; align-self: end; }
-    .work-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent);
-      box-shadow: 0 18px 40px -16px rgba(47,93,63,0.18);
-    }
-    .work-head {
-      display: flex; justify-content: space-between; align-items: baseline;
-      font-family: var(--mono); font-size: 12px;
-      color: var(--ink-3); letter-spacing: 0.05em;
-    }
-    .work-n { color: var(--accent); font-weight: 500; }
-    .work-kind {
-      font-family: var(--mono); font-size: 11px;
-      color: var(--ink-3); letter-spacing: 0.06em;
-      text-transform: uppercase; margin: 0 0 6px 0;
-    }
-    .work-title {
-      font-family: var(--serif); font-weight: 400;
-      font-size: 26px; margin: 0;
-      letter-spacing: -0.015em; line-height: 1.18;
-    }
-    .work-text {
-      font-size: 15px; color: var(--ink-2);
-      margin: 0; line-height: 1.55;
-    }
-    .tag {
-      font-family: var(--mono); font-size: 11px;
-      padding: 3px 9px; background: var(--bg-2);
-      color: var(--ink-2); border-radius: 100px;
-    }
-    .work-metric {
-      border-top: 1px dashed var(--line-2);
-      padding-top: 16px;
-      display: flex; align-items: baseline;
-      justify-content: space-between;
-    }
-    .metric-n {
-      font-family: var(--serif); font-size: 28px;
-      color: var(--accent); letter-spacing: -0.02em;
-    }
-    .metric-l {
-      font-family: var(--mono); font-size: 11px;
-      color: var(--ink-3); text-transform: uppercase;
-      letter-spacing: 0.05em; text-align: right; max-width: 18ch;
-    }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 60px;
-    }
-    .about-text p {
-      font-size: 17px; color: var(--ink-2);
-      line-height: 1.65; margin: 0 0 18px 0; max-width: 56ch;
-    }
-    .about-text strong { color: var(--ink); font-weight: 600; }
-    .about-pull {
-      font-family: var(--serif); font-style: italic;
-      font-size: 22px !important; color: var(--ink) !important;
-      border-left: 2px solid var(--accent);
-      padding-left: 18px; margin-top: 28px !important;
-    }
-
-    /* timeline */
-    .timeline { position: relative; padding-left: 24px; }
-    .timeline::before {
-      content: ""; position: absolute;
-      left: 5px; top: 8px; bottom: 8px;
-      width: 1px; background: var(--line-2);
-    }
-    .tl-item { position: relative; padding: 14px 0 14px 16px; }
-    .tl-dot {
-      position: absolute; left: -24px; top: 18px;
-      width: 11px; height: 11px; border-radius: 50%;
-      background: var(--bg-2); border: 2px solid var(--line-2);
-    }
-    .tl-item.active .tl-dot {
-      background: var(--accent); border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(47,93,63,0.15);
-    }
-    .tl-y {
-      font-family: var(--mono); font-size: 11px;
-      color: var(--ink-3); letter-spacing: 0.05em; margin-bottom: 4px;
-    }
-    .tl-t { font-family: var(--serif); font-size: 18px; color: var(--ink); line-height: 1.25; }
-    .tl-sub { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
-
-    /* ── NOW ── */
-    .now-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-    .now-item {
-      padding: 24px; background: var(--card);
-      border: 1px solid var(--line); border-radius: 14px;
-      transition: border-color .2s, transform .2s;
-    }
-    .now-item:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .now-ic { font-size: 22px; color: var(--accent); margin-bottom: 14px; }
-    .now-head {
-      font-family: var(--serif); font-size: 18px;
-      margin-bottom: 8px; letter-spacing: -0.01em;
-    }
-    .now-item p { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.5; }
-
-    /* ── CONTACT ── */
-    .contact { background: var(--ink); color: var(--bg); }
-    .contact-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 100px 32px 40px;
-    }
-    .contact-eyebrow {
-      font-family: var(--mono); font-size: 12px;
-      color: var(--warm); letter-spacing: 0.08em; margin-bottom: 24px;
-    }
-    .contact-h {
-      font-family: var(--serif); font-weight: 400;
-      font-size: clamp(36px, 5.4vw, 72px);
-      line-height: 1.05; letter-spacing: -0.02em;
-      margin: 0 0 64px 0; max-width: 18ch;
-    }
-    .contact-h em { color: var(--warm); font-style: italic; }
-    /* ── CONTACT FORM ── */
-    .contact-form { max-width: 560px; margin-bottom: 64px; }
-    .contact-form label {
-      display: block; font-size: 12px; font-family: var(--mono);
-      letter-spacing: 0.08em; color: var(--warm); margin-bottom: 8px;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%; background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px; padding: 14px 16px;
-      color: var(--bg); font-family: var(--sans); font-size: 15px;
-      margin-bottom: 20px; outline: none; transition: border-color 0.2s;
-    }
-    .contact-form input:focus,
-    .contact-form textarea:focus { border-color: var(--warm); }
-    .contact-form textarea { min-height: 140px; resize: vertical; }
-    .contact-form button {
-      background: var(--warm); color: #fff; border: none;
-      padding: 14px 32px; border-radius: 6px; font-size: 15px;
-      font-family: var(--sans); cursor: pointer; transition: opacity 0.2s;
-    }
-    .contact-form button:hover { opacity: 0.85; }
-    .form-success { display: none; color: var(--warm); font-family: var(--mono); font-size: 14px; margin-top: 16px; }
-    .contact-links { display: grid; gap: 4px; max-width: 720px; }
-    .c-link {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 22px 4px;
-      border-bottom: 1px solid rgba(225,221,210,0.15);
-      font-family: var(--serif); font-size: 24px;
-      transition: padding-left .25s, color .2s;
-    }
-    .c-link:hover { padding-left: 16px; color: var(--warm); }
-    .c-primary { font-size: 34px; color: var(--bg); }
-    .c-primary:hover { color: var(--warm); }
-    .c-handle {
-      font-family: var(--mono); font-size: 13px;
-      color: var(--ink-3); letter-spacing: 0.04em;
-    }
-    .foot {
-      margin-top: 80px; padding-top: 24px;
-      border-top: 1px solid rgba(225,221,210,0.15);
-      display: flex; justify-content: space-between;
-      font-family: var(--mono); font-size: 11px; color: var(--ink-3);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero-grid, .about-grid { grid-template-columns: 1fr; }
-      .hero-card { display: none; }
-      .work-grid { grid-template-columns: 1fr; }
-      .now-grid { grid-template-columns: 1fr 1fr; }
-      .stats { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 600px) {
-      .nav-inner { padding: 14px 20px; }
-      .nav-links a:not(.nav-cta) { display: none; }
-      .hero { padding: 48px 20px 64px; }
-      .section { padding: 64px 20px; }
-      .now-grid { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr 1fr; gap: 20px; }
-      .contact-inner { padding: 64px 20px 32px; }
-      .foot { flex-direction: column; gap: 8px; }
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #f2f1ec; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
+    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #f2f1ec; z-index: 9999; }
+    #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
+    #__bundler_placeholder { color: #999; font-size: 14px; }
   </style>
+  <noscript>
+    <style>#__bundler_loading { display: none; }</style>
+    <div style="position:fixed;bottom:12px;left:12px;font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;color:#999;background:rgba(255,255,255,0.9);padding:6px 12px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.08);z-index:10000;">
+      This page requires JavaScript to display.
+    </div>
+  </noscript>
 </head>
-<body style="">
+<body>
+  <div id="__bundler_thumbnail"><svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="400" fill="#f2f1ec"></rect><rect x="150" y="150" width="100" height="100" fill="#e2522b"></rect></svg></div>
+  <div id="__bundler_loading">Unpacking...</div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#top" class="logo">
-      <span class="logo-mark"><span class="logo-arc"></span></span>
-      <span>Daniel Weiskopf</span>
-    </a>
-    <div class="nav-links">
-      <a href="#work">Projekte</a>
-      <a href="#about">Über mich</a>
-      <a href="#now">Aktuell</a>
-      <a href="#contact" class="nav-cta">Kontakt</a>
-    </div>
-  </div>
-</nav>
+  <script>
+    
+document.addEventListener('DOMContentLoaded', async function() {
+  const loading = document.getElementById('__bundler_loading');
+  function setStatus(msg) { if (loading) loading.textContent = msg; }
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-grid">
-    <div class="hero-text">
-      <!-- <div class="eyebrow">
-        <span class="eyebrow-dot"></span>
-        Niederösterreich · Offen für neue Herausforderungen
-      </div> -->
-      <h1>
-        Energietechnik aus Überzeugung — von der <em>Thermodynamik</em>
-        bis zur Regelung, die sie im Alltag zum Laufen bringt.
-      </h1>
-      <p class="hero-sub" style="">
-        Umwelt-, Verfahrens- und Energietechniker (MSc) — und seit Jahren
-        Entwicklungsingenieur für Wärmepumpen mit Schwerpunkt Steuerungs-
-        und Regelungstechnik. Tagsüber bringe ich Wärmepumpen bei, ein
-        bisschen effizienter zu werden. In der Freizeit am liebsten mit der Familie draußen
-        in der Natur, oder bei einem Konzert.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#work">
-          Projekte ansehen
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </a>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-n">10+</div>
-          <div class="stat-l">Jahre in Energie- und Verfahrenstechnik</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">MSc</div>
-          <div class="stat-l">Umwelt-, Verfahrens- und Energietechnik</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">2018</div>
-          <div class="stat-l">MSc-Abschluss am MCI Innsbruck</div>
-        </div>
-      </div>
-    </div>
+  const FONT_MIME = /^(font[/]|application[/](x-)?font-|application[/]vnd\.ms-fontobject)/i;
+  const MIME_TOKEN = /^[\w.+-]+[/][\w.+-]+$/;
+  function toBase64(bytes) {
+    let bin = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) {
+      bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    }
+    return btoa(bin);
+  }
 
-    <div class="hero-card">
-      <div class="portrait">
+  // Error sink persists across replaceWith since it's on window, not the DOM.
+  window.addEventListener('error', function(e) {
+    // Failed resource loads (CSP-blocked links, scripts, images) fire plain
+    // events at the element — warn only; real JS errors carry message/error.
+    if (!e.message && !e.error && e.target && e.target !== window) {
+      console.warn('[bundle] resource failed to load:',
+        e.target.tagName, String(e.target.src || e.target.href || ''));
+      return;
+    }
+    var p = document.body || document.documentElement;
+    var d = document.getElementById('__bundler_err') || p.appendChild(document.createElement('div'));
+    d.id = '__bundler_err';
+    d.style.cssText = 'position:fixed;bottom:12px;left:12px;right:12px;font:12px/1.4 ui-monospace,monospace;background:#2a1215;color:#ff8a80;padding:10px 14px;border-radius:8px;border:1px solid #5c2b2e;z-index:99999;white-space:pre-wrap;max-height:40vh;overflow:auto';
+    d.textContent = (d.textContent ? d.textContent + String.fromCharCode(10) : '') +
+      '[bundle] ' + (e.message || e.type) +
+      (e.filename ? ' (' + e.filename.slice(0, 60) + ':' + e.lineno + ')' : '');
+  }, true);
 
-        <!-- Foto einbinden: Kommentar unten entfernen und Platzhalter-SVG auskommentieren -->
-        <!-- <img src="foto.jpg" alt="Daniel Weiskopf"> -->
+  try {
+    const manifestEl = document.querySelector('script[type="__bundler/manifest"]');
+    const templateEl = document.querySelector('script[type="__bundler/template"]');
+    if (!manifestEl || !templateEl) {
+      setStatus('Error: missing bundle data');
+      console.error('[bundler] Missing script tags — manifestEl:', !!manifestEl, 'templateEl:', !!templateEl);
+      return;
+    }
 
-        <!-- Platzhalter — entfernen sobald Foto vorhanden -->
-        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="display:block;">
-          <defs>
-            <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#d4dccc"/>
-              <stop offset="100%" stop-color="#a8b8a3"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="500" fill="url(#pg)"/>
-          <g stroke="rgba(47,93,63,0.08)" stroke-width="1">
-            <line x1="0" y1="62.5" x2="400" y2="62.5"/>
-            <line x1="0" y1="125" x2="400" y2="125"/>
-            <line x1="0" y1="187.5" x2="400" y2="187.5"/>
-            <line x1="0" y1="250" x2="400" y2="250"/>
-            <line x1="0" y1="312.5" x2="400" y2="312.5"/>
-            <line x1="0" y1="375" x2="400" y2="375"/>
-            <line x1="0" y1="437.5" x2="400" y2="437.5"/>
-            <line x1="50" y1="0" x2="50" y2="500"/>
-            <line x1="100" y1="0" x2="100" y2="500"/>
-            <line x1="150" y1="0" x2="150" y2="500"/>
-            <line x1="200" y1="0" x2="200" y2="500"/>
-            <line x1="250" y1="0" x2="250" y2="500"/>
-            <line x1="300" y1="0" x2="300" y2="500"/>
-            <line x1="350" y1="0" x2="350" y2="500"/>
-          </g>
-          <circle cx="200" cy="185" r="72" fill="rgba(47,93,63,0.18)"/>
-          <ellipse cx="200" cy="370" rx="110" ry="80" fill="rgba(47,93,63,0.14)"/>
-          <rect x="20" y="456" width="130" height="24" rx="4" fill="rgba(255,255,255,0.55)"/>
-          <text x="28" y="472" font-family="ui-monospace,monospace" font-size="11" fill="rgba(20,32,26,0.45)" letter-spacing="0.05em">[ Foto · folgt ]</text>
-        </svg>
+    const manifest = JSON.parse(manifestEl.textContent);
+    let template = JSON.parse(templateEl.textContent);
 
-      </div>
-      <div class="hero-meta">
-        <div class="meta-row">
-          <span class="meta-k">Standort</span>
-          <span>Haag, Niederösterreich 🇦🇹</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-k">Aktuell</span>
-          <span>Wärmepumpen · Smart Home · API</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-k">Interesse an</span>
-          <span>Energie · IoT · Fotografie · Musik</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    // Nested page bundles (iframe targets). Each ships ONCE, in the ROOT
+    // document's manifest; frame srcs carry an about:blank#<uuid> marker
+    // instead of a substitutable uuid. Every document mints the blobs for
+    // its OWN frames — from local text at the root, or text obtained from
+    // its DIRECT parent over the relay protocol below — so each frame
+    // navigation stays same-origin with its initiator and a deduped page
+    // loads at any depth on any host, including a file:// download's
+    // opaque origins (where a blob minted by one document cannot be
+    // navigated to by another).
+    const pageOrderEl = document.querySelector('script[type="__bundler/page_order"]');
+    const pageOrder = pageOrderEl ? JSON.parse(pageOrderEl.textContent) : [];
+    const pageSet = new Set(pageOrder);
+    const pageTexts = {};
 
-
-
-<!-- WORK -->
-<section class="section" id="work">
-  <div class="sec-head">
-    <div class="sec-kicker">— 01</div>
-    <h2 class="sec-title">Ausgewählte Projekte</h2>
-    <div class="sec-sub" style="">Was ich entworfen, geregelt oder vermessen habe.</div>
-  </div>
-  <div class="work-grid">
-
-    <article class="work-card">
-      <div class="work-head">
-        <span class="work-n">01</span>
-        <span>2026 →</span>
-      </div>
-      <div class="work-lede">
-        <div class="work-kind">Privatprojekt · eigenes Haus</div>
-        <h3 class="work-title">Telemetrie und Energieoptimierung mittels Raspberry Pi</h3>
-        <p class="work-text">Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.</p>
-      </div>
-      <div class="work-tags">
-        <span class="tag">Raspberry Pi</span>
-        <span class="tag">Python</span>
-        <span class="tag">Modbus</span>
-        <span class="tag">MQTT</span>
-        <span class="tag">API</span>
-      </div>
-      <div class="work-metric">
-        <div class="metric-n"></div>
-        <div class="metric-l">Energiekosten Haushalt</div>
-      </div>
-    </article>
-
-    <article class="work-card">
-      <div class="work-head">
-        <span class="work-n">02</span>
-        <span>2025 →</span>
-      </div>
-      <div class="work-lede">
-        <div class="work-kind">Lernprojekt · Edge AI</div>
-        <h3 class="work-title">Edge AI mit M5Stack Core2</h3>
-        <p class="work-text">Einstieg in TinyML direkt auf dem Microcontroller: Gestenerkennung und einfache Klassifikation ohne Cloud-Anbindung. Der M5Stack Core2 läuft mit Arduino IDE und einem abgespeckten Modell — alles lokal, kein Server nötig.</p>
-      </div>
-      <div class="work-tags">
-        <span class="tag">M5Stack Core2</span>
-        <span class="tag">Arduino IDE</span>
-        <span class="tag">TinyML</span>
-        <span class="tag">IoT</span>
-      </div>
-      <div class="work-metric">
-        <div class="metric-n"></div>
-        <div class="metric-l">lokal · kein Cloud-Zwang</div>
-      </div>
-    </article>
-
-    <article class="work-card">
-      <div class="work-head">
-        <span class="work-n">03</span>
-        <span>2025 →</span>
-      </div>
-      <div class="work-lede">
-        <div class="work-kind">Privatprojekt · eigenes Haus</div>
-        <h3 class="work-title">Ladeoptimierung des PV-Batteriespeichers</h3>
-        <p class="work-text">Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiseerträge maximiert und der Netzbezug minimiert werden.</p>
-      </div>
-      <div class="work-tags">
-        <span class="tag">Python</span>
-        <span class="tag">API</span>
-        <span class="tag">Fronius</span>
-      </div>
-      <div class="work-metric">
-        <div class="metric-n"></div>
-        <div class="metric-l">Energieoptimierung</div>
-      </div>
-    </article>
-
-    <article class="work-card">
-      <div class="work-head">
-        <span class="work-n">04</span>
-        <span>2024 →</span>
-      </div>
-      <div class="work-lede">
-        <div class="work-kind">Privatprojekt · Hausgarten</div>
-        <h3 class="work-title">Smartes Gewächshaus</h3>
-        <p class="work-text">Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon — und genau das ist der Punkt.</p>
-      </div>
-      <div class="work-tags">
-        <span class="tag">Raspberry Pi</span>
-        <span class="tag">Python</span>
-        <span class="tag">Relais</span>
-        <span class="tag">Sensorik</span>
-      </div>
-      <div class="work-metric">
-        <div class="metric-n"></div>
-        <div class="metric-l">autonom</div>
-      </div>
-    </article>
-
-    <article class="work-card">
-      <div class="work-head">
-        <span class="work-n">05</span>
-        <span>2018</span>
-      </div>
-      <div class="work-lede">
-        <div class="work-kind">Forschung · MCI Innsbruck</div>
-        <h3 class="work-title">Thermochemische Energiespeicherung am Beispiel des Mg(OH)<sub>2</sub>/MgO-Reaktionsnetzwerkes</h3>
-        <p class="work-text">Untersuchung des Speichermediums sowie Aufbau eines Testreaktors und Simulation dessen.</p>
-      </div>
-      <div class="work-tags">
-        <span class="tag">Matlab</span>
-        <span class="tag">Versuchsaufbau</span>
-        <span class="tag">Simulation</span>
-      </div>
-      <div class="work-metric">
-        <div class="metric-n"></div>
-        <div class="metric-l">Energiewende</div>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- ABOUT -->
-<div class="section bg-2" id="about" style="padding: 100px 0;">
-  <div class="section-inner">
-    <div class="sec-head">
-      <div class="sec-kicker">— 02</div>
-      <h2 class="sec-title">Über mich</h2>
-      <div class="sec-sub"></div>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p style="">
-          Aufgewachsen in den Alpen, wo man die Gletscher Jahr für
-          Jahr nach oben wandern sieht — abstrakt fühlte sich das
-          Klimathema von dort aus nie an. Auch das war ein Grund weshalb ich Umwelt-, Verfahrens-, und Energietechnik studiert habe.</p>
-        <p style="">
-          Seit 2019 arbeite ich bei einem Wärmepumpenhersteller in der
-          Entwicklung. Mein Bereich: <strong>Steuerung und Regelung</strong>
-          — Firmware, Regelkreise, Zustandsmaschinen und die Felddaten,
-          an denen sich zeigt, ob die Theorie gestimmt hat, sowie 3rd Level Support der Techniker im Feld.
-        </p>
-        <p style="">
-          Wenn ich nicht am Schreibtisch sitze, bin ich am liebsten draußen
-          in der Natur — wandern, am Berg, in der Wand am Kletterturm oder einfach an der frischen Luft in unserem Garten.
-          Genauso wichtig: Musik. Ich höre breit und gehe so oft auf
-          Konzerte, wie es geht — live klingt eben doch anders.
-        </p>
-        <p style="">
-          Daneben entstehen viele Bastelprojekte: ein Raspberry Pi, der
-          Wetterdaten über eine API in die Ladelogik meines
-          Fronius-Wechselrichters einbindet, und ein Terminal-Display
-          für alle Haustechnik-Kennzahlen. Nicht weil es sein muss,
-          sondern weil es Spaß macht.
-        </p>
-        <p class="about-pull" style="">
-          Mir geht es um eine lebenswerte Zukunft für die nächste
-          Generation. Das bin ich meinen Kindern schuldig.</p>
-      </div>
-      <div class="timeline">
-        <div class="tl-item active">
-          <div class="tl-dot"></div>
-          <div class="tl-y">seit 2019</div>
-          <div class="tl-t" style="">Entwicklungsingenieur</div>
-          <div class="tl-sub" style="">Wärmepumpen · Steuerung &amp; Regelung</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-y" style="">2016 — 2018</div>
-          <div class="tl-t" style="">MSc, Umwelt-, Verfahrens- und Energietechnik</div>
-          <div class="tl-sub" style="">MCI Innsbruck</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-y" style=""><span style="letter-spacing: 0.55px;">2013 — 2016</span></div>
-          <div class="tl-t" style="">BSc, Umwelt -, Verfahrens- und Energietechnik</div>
-          <div class="tl-sub">MCI Innsbruck</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-y" style=""><span style="letter-spacing: 0.55px;">2006 — 2013</span></div>
-          <div class="tl-t">Inbetriebnahmetechniker</div>
-          <div class="tl-sub">Industriedrucksysteme&nbsp;&nbsp;·&nbsp; Inbetriebnahme und Endabnahme</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-y" style="">2001 - 2005</div>
-          <div class="tl-t" style="">Fachschule für Elektronik</div>
-          <div class="tl-sub" style="">HTBLVA Innsbruck</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- NOW -->
-<section class="section" id="now">
-  <div class="sec-head">
-    <div class="sec-kicker">— 03</div>
-    <h2 class="sec-title">Aktuell</h2>
-    <div class="sec-sub">Stand: Oktober 2026.</div>
-  </div>
-  <div class="now-grid">
-    <div class="now-item">
-      <div class="now-ic">◑</div>
-      <div class="now-head">Im Job</div>
-      <p style="">Entwicklung von neuen Wärmepumpensystemen, die die Energiewende antreiben.</p>
-    </div>
-    <div class="now-item">
-      <div class="now-ic">◐</div>
-      <div class="now-head">An der Werkbank</div>
-      <p style="">Zwei Projekte parallel: eine API-Bridge, die die Ladelogik meines Fronius-Batteriespeichers an die Wettervorhersage koppelt — und die Automatisierung des Gewächshauses (Bewässerung, Beschattung, Datenlogging).</p>
-    </div>
-    <div class="now-item">
-      <div class="now-ic">●</div>
-      <div class="now-head">Lese gerade</div>
-      <p>Joey Goebel, „Sunset Flip". Daneben gerne Fachvideos zu Smart Home und erneuerbaren Energien — Stromspeicher, Wärmepumpen-Setups, kleine Bastellösungen aus der Community.</p>
-    </div>
-    <!-- <div class="now-item">
-      <div class="now-ic">○</div>
-      <div class="now-head">Suche</div>
-      <p style="">Ein Team, das echte Hardware für die Energiewende baut. Bevorzugt im Raum Linz, Steyr, Amstetten — oder remote.</p>
-    </div> -->
-  </div>
-</section>
-
-<!-- CONTACT -->
-<div class="contact" id="contact">
-  <div class="contact-inner">
-    <div class="contact-eyebrow">04 — Kontakt</div>
-    <h2 class="contact-h">
-      Lust auf ein Gespräch?<br>
-      <em>Schreib mir.</em>
-    </h2>
-    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
-      <input type="hidden" name="access_key" value="80e1e346-2b0c-4d53-8830-ddc244b1aaaa">
-      <input type="hidden" name="subject" value="Neue Nachricht von deinem Portfolio">
-      <input type="hidden" name="redirect" value="false">
-
-      <label for="cf-name">Name</label>
-      <input type="text" id="cf-name" name="name" placeholder="Dein Name" required>
-
-      <label for="cf-email">E-Mail</label>
-      <input type="email" id="cf-email" name="email" placeholder="deine@email.at" required>
-
-      <label for="cf-msg">Nachricht</label>
-      <textarea id="cf-msg" name="message" placeholder="Worum geht's?" required></textarea>
-
-      <button type="submit">Absenden →</button>
-      <p class="form-success" id="form-success">✓ Danke — ich melde mich bald!</p>
-    </form>
-
-    <script>
-      document.getElementById('contact-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const data = new FormData(this);
-        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-        if (res.ok) {
-          this.reset();
-          document.getElementById('form-success').style.display = 'block';
+    // ── Nested-page text protocol (parent-chain relay) ──
+    // Page bundles ship once, in the ROOT document's manifest. Every
+    // document mints the blobs for its OWN frames, obtaining page text
+    // through a strict parent-chain relay: a document only ever SENDS to
+    // its direct parent (which, for every document the publisher's own
+    // runtime minted, is another publisher document) and only ACCEPTS
+    // text from that direct parent; requests from below are honored only
+    // for the document's own child frames, and the ROOT never sends
+    // upward at all. That last rule is load-bearing: the artifact host's
+    // frame-ancestors allows claude.ai (and friends) to frame an
+    // artifact, so window.top can be a FOREIGN document — a top-addressed
+    // protocol would hand page uuids to that ancestor and accept forged
+    // "page text" from it, minting attacker HTML as an artifact-origin
+    // blob document. The chain never touches the ancestor: requests stop
+    // at the root, replies are origin-addressed per hop (never '*' when
+    // an origin exists), and both directions are origin-gated (on https
+    // a foreign sender's origin can never equal this document's; in
+    // opaque contexts — file:// — everything serializes as 'null', where
+    // an embedded EXTERNAL frame still fails the gate by carrying its
+    // own real origin, and a sandboxed child of such a frame is excluded
+    // by the own-child-frames check plus uuid unguessability). Shape is
+    // deny-by-default: one request form, one reply form, no error
+    // replies.
+    // window.origin is the SERIALIZED SECURITY origin ('null' in opaque
+    // contexts such as a sandboxed preview iframe) — location.origin is
+    // computed from the URL and stays 'https://…' even when the document
+    // is sandboxed, which would misgate every opaque chain.
+    const OWN_TARGET = /^https?:[/][/]/.test(window.origin || '')
+      ? window.origin
+      : '*';
+    function trustedOrigin(e) {
+      if (e.origin === window.origin) return true; // https chains; opaque==opaque
+      // file:// trees: Chrome serializes the file document's origin as
+      // 'file://' while the blob: documents it mints serialize as 'null',
+      // so the two legitimate shapes can never string-match — accept the
+      // pair in both directions. https origins never serialize as either,
+      // and sender identity (own child frame / direct parent) is checked
+      // separately.
+      return (
+        (e.origin === 'null' &&
+          (window.origin === 'file://' ||
+            window.location.protocol === 'file:')) ||
+        (/^file:/.test(e.origin) && window.origin === 'null')
+      );
+    }
+    // Non-empty only in the root document (nested bundles ship an empty
+    // island), so it doubles as the root marker: the root answers from
+    // local text and treats a miss as authoritative — never relaying to
+    // its (possibly foreign) parent.
+    const isPageRoot = pageOrder.length > 0;
+    const blobUrls = {};
+    const resourceBlobs = {};
+    const UUID_SHAPE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+    const pendingFrames = {}; // uuid -> [{el, frag}] awaiting text for own frames
+    const pendingRelays = {}; // uuid -> [childWindow] awaiting text to pass down
+    function mountPage(el, frag, text) {
+      const pageBlob = new Blob([text], { type: 'text/html' });
+      const u = URL.createObjectURL(pageBlob);
+      resourceBlobs[u] = pageBlob;
+      el.src = u + frag;
+    }
+    function deliverPage(uuid, text) {
+      const frames = pendingFrames[uuid];
+      delete pendingFrames[uuid];
+      if (frames) for (const f of frames) mountPage(f.el, f.frag, text);
+      const relays = pendingRelays[uuid];
+      delete pendingRelays[uuid];
+      if (relays) {
+        for (const cw of relays) {
+          try { cw.postMessage({ __bundler_page: uuid, __bundler_text: text }, OWN_TARGET); } catch (err) { /* gone */ }
         }
-      });
-    </script>
+      }
+    }
+    function ownFrameWindows() {
+      const out = [];
+      for (const f of Array.from(document.querySelectorAll('iframe'))) {
+        try { if (f.contentWindow) out.push(f.contentWindow); } catch (err) { /* detached */ }
+      }
+      return out;
+    }
+    window.addEventListener('message', function (e) {
+      const d = e.data;
+      if (!d || typeof d !== 'object' || !e.source) return;
+      // Origin gate first; the structural checks below (own-child-frames
+      // for requests, direct-parent + solicited-uuid for replies, the
+      // root's never-relay rule) are what hold in fully opaque chains
+      // where origin strings can't discriminate — a sandboxed root's
+      // FOREIGN wrapper still fails all three even though both serialize
+      // as real-vs-'null' rather than matching.
+      if (!trustedOrigin(e)) return;
+      if (typeof d.__bundler_need === 'string' && UUID_SHAPE.test(d.__bundler_need)) {
+        // Requests are honored only for this document's own child frames.
+        if (ownFrameWindows().indexOf(e.source) < 0) return;
+        const uuid = d.__bundler_need;
+        const text = pageTexts[uuid];
+        if (typeof text === 'string') {
+          try { e.source.postMessage({ __bundler_page: uuid, __bundler_text: text }, OWN_TARGET); } catch (err) { /* gone */ }
+          return;
+        }
+        if (isPageRoot || window.parent === window) return; // authoritative miss
+        const waiting = pendingRelays[uuid];
+        if (waiting) {
+          if (waiting.indexOf(e.source) < 0) waiting.push(e.source);
+          return;
+        }
+        // Never-answered uuids would otherwise accumulate forever under a
+        // request spray; past the cap (far above any real page count) new
+        // relays are dropped rather than remembered.
+        if (Object.keys(pendingRelays).length >= 128) return;
+        pendingRelays[uuid] = [e.source];
+        window.parent.postMessage({ __bundler_need: uuid }, OWN_TARGET);
+      } else if (
+        typeof d.__bundler_page === 'string' &&
+        UUID_SHAPE.test(d.__bundler_page) &&
+        typeof d.__bundler_text === 'string'
+      ) {
+        // The shape test is load-bearing beyond tidiness: the solicited
+        // check below uses the in operator, which matches prototype keys
+        // ('__proto__', 'constructor') — an unshaped key would reach
+        // deliverPage and throw, painting the error banner.
+        // Text is accepted only from the direct parent — the document
+        // that minted this one.
+        if (e.source !== window.parent || window.parent === window) return;
+        if (!(d.__bundler_page in pendingFrames) && !(d.__bundler_page in pendingRelays)) return;
+        deliverPage(d.__bundler_page, d.__bundler_text);
+      }
+    });
 
-    <div class="contact-links">
-      <!-- <a href="/cdn-cgi/l/email-protection#d6beb3babab996a1b3bfa5bdb9a6b0f8b2b3a0" class="c-link c-primary" style=""><span class="__cf_email__" data-cfemail="295e4c405a4246594f764d4847404c456941465d44484045074a4644">[email&#160;protected]</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </a> -->
-      <a href="https://github.com/WeisDan" target="_blank" rel="noreferrer" class="c-link">
-        <span>GitHub</span>
-        <span class="c-handle">@WeisDan</span>
-      </a>
-      <a href="https://linkedin.com/in/daniel-weiskopf" target="_blank" rel="noreferrer" class="c-link">
-        <span>LinkedIn</span>
-        <span class="c-handle">/daniel-weiskopf</span>
-      </a>
-    </div>
-    <div class="foot">
-      <span>© 2026 Daniel Weiskopf</span>
-      <span>Handgemacht · GitHub Pages · keine Tracker</span>
-    </div>
-  </div>
-</div>
+    const uuids = Object.keys(manifest);
+    setStatus('Unpacking ' + uuids.length + ' assets...');
 
+    await Promise.all(uuids.map(async (uuid) => {
+      const entry = manifest[uuid];
+      try {
+        const binaryStr = atob(entry.data);
+        const bytes = new Uint8Array(binaryStr.length);
+        for (let i = 0; i < binaryStr.length; i++) bytes[i] = binaryStr.charCodeAt(i);
 
+        let finalBytes = bytes;
+        if (entry.compressed) {
+          if (typeof DecompressionStream !== 'undefined') {
+            const ds = new DecompressionStream('gzip');
+            const writer = ds.writable.getWriter();
+            const reader = ds.readable.getReader();
+            writer.write(bytes);
+            writer.close();
+            const chunks = [];
+            let totalLen = 0;
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+              chunks.push(value);
+              totalLen += value.length;
+            }
+            finalBytes = new Uint8Array(totalLen);
+            let offset = 0;
+            for (const chunk of chunks) { finalBytes.set(chunk, offset); offset += chunk.length; }
+          } else {
+            console.warn('DecompressionStream not available, asset ' + uuid + ' may not render');
+          }
+        }
 
+        if (pageSet.has(uuid)) {
+          pageTexts[uuid] = new TextDecoder().decode(finalBytes);
+          return;
+        }
+        if (FONT_MIME.test(entry.mime) && MIME_TOKEN.test(entry.mime)) {
+          // Strict artifact hosts allow font-src data: but not blob:.
+          blobUrls[uuid] = 'data:' + entry.mime + ';base64,' +
+            (entry.compressed ? toBase64(finalBytes) : entry.data);
+        } else {
+          const blob = new Blob([finalBytes], { type: entry.mime });
+          blobUrls[uuid] = URL.createObjectURL(blob);
+          resourceBlobs[blobUrls[uuid]] = blob;
+        }
+      } catch (err) {
+        console.error('Failed to decode asset ' + uuid + ':', err);
+        const blob = new Blob([], { type: entry.mime });
+        blobUrls[uuid] = URL.createObjectURL(blob);
+        resourceBlobs[blobUrls[uuid]] = blob;
+      }
+    }));
 
-</body></html>
+    const extResEl = document.querySelector('script[type="__bundler/ext_resources"]');
+    const extResources = extResEl ? JSON.parse(extResEl.textContent) : [];
+    const resourceMap = {};
+    for (const entry of extResources) {
+      if (blobUrls[entry.uuid]) resourceMap[entry.id] = blobUrls[entry.uuid];
+    }
+
+    // Artifact-host CSP (connect-src 'self') refuses fetch() of blob: URLs —
+    // consumers read these Blobs directly. Survives the swap like the error sink.
+    window.__resourceBlobs = resourceBlobs;
+
+    setStatus('Rendering...');
+    // Page uuids have no blob here — they ride inside about:blank#<uuid>
+    // frame markers the pass below resolves after the swap.
+    for (const uuid of uuids) {
+      if (pageSet.has(uuid)) continue;
+      template = template.split(uuid).join(blobUrls[uuid]);
+    }
+
+    // Strip integrity + crossorigin — blob URLs from a file:// document inherit
+    // a null origin, so crossorigin forces a CORS fetch that SRI then rejects.
+    // The manifest bytes are ours; SRI protects against CDN compromise, not this.
+    template = template.replace(/\s+integrity="[^"]*"/gi, '').replace(/\s+crossorigin="[^"]*"/gi, '');
+
+    const resourceScript = '<script>window.__resources = ' +
+      JSON.stringify(resourceMap).replace(/<\//g, '<\\/') +
+      ';</' + 'script>';
+    // Inject after <head> so the DOCTYPE stays first; prepending the script
+    // would push the parser into quirks mode. DOMParser always emits a <head>
+    // (synthesizing one if the source HTML omitted it) but may carry
+    // attributes through, so match the full opening tag. slice() rather than
+    // replace() keeps us clear of $-pattern substitution in resourceScript.
+    const headOpen = template.match(/<head[^>]*>/i);
+    if (headOpen) {
+      const i = headOpen.index + headOpen[0].length;
+      template = template.slice(0, i) + resourceScript + template.slice(i);
+    }
+
+    // Parse the template and swap the root element. Scripts inserted via
+    // DOMParser/replaceWith are inert per spec — re-create each with
+    // createElement so they execute, awaiting onload for src scripts to
+    // preserve ordering (React before ReactDOM before Babel before text/babel).
+    const doc = new DOMParser().parseFromString(template, 'text/html');
+    document.documentElement.replaceWith(doc.documentElement);
+
+    // Resolve page-frame markers: mint this document's own blob for each
+    // framed page — from local text when this is the root, otherwise by
+    // asking the direct parent over the relay protocol above. An
+    // unanswered request leaves the frame on about:blank, the same
+    // degraded state as a refused embed.
+    {
+      const MARKER = /^about:blank#([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(#.*)?$/;
+      const needed = [];
+      for (const el of Array.from(document.querySelectorAll('iframe'))) {
+        const m = MARKER.exec(el.getAttribute('src') || '');
+        if (!m) continue;
+        const text = pageTexts[m[1]];
+        if (typeof text === 'string') {
+          mountPage(el, m[2] || '', text);
+        } else if (window.parent !== window && !isPageRoot) {
+          const had = pendingFrames[m[1]];
+          (pendingFrames[m[1]] = had || []).push({ el: el, frag: m[2] || '' });
+          if (!had) needed.push(m[1]);
+        }
+      }
+      for (const uuid of needed) {
+        window.parent.postMessage({ __bundler_need: uuid }, OWN_TARGET);
+      }
+    }
+
+    const dead = Array.from(document.scripts);
+    for (const old of dead) {
+      const s = document.createElement('script');
+      for (const a of old.attributes) s.setAttribute(a.name, a.value);
+      s.textContent = old.textContent;
+      // text/babel scripts with a src: read and inline. transformScriptTags
+      // does XHR against the src, but blob:null/ from a file:// origin is
+      // silently dropped. Inlining makes it a plain inline babel script,
+      // which transformScriptTags handles unconditionally.
+      if ((s.type === 'text/babel' || s.type === 'text/jsx') && s.src) {
+        const pre = resourceBlobs[s.src.split('#')[0]];
+        s.textContent = pre ? await pre.text() : await (await fetch(s.src)).text();
+        s.removeAttribute('src');
+      }
+      const p = s.src ? new Promise(function(r) { s.onload = s.onerror = r; }) : null;
+      old.replaceWith(s);
+      if (p) await p;
+    }
+    // Babel standalone auto-transforms type=text/babel on DOMContentLoaded,
+    // which fired before we swapped the document. Trigger manually if present.
+    if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
+      window.Babel.transformScriptTags();
+    }
+  } catch (err) {
+    setStatus('Error unpacking: ' + err.message);
+    console.error('Bundle unpack error:', err);
+  }
+});
+
+  </script>
+
+  <script type="__bundler/manifest">
+{}
+  </script>
+
+  <script type="__bundler/ext_resources">
+[]
+  </script>
+
+  <script type="__bundler/page_order">
+[]
+  </script>
+
+  <script type="__bundler/template">
+"<!DOCTYPE html>\n<html lang=\"de\"><head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Daniel Weiskopf — Entwicklungsingenieur · Wärmepumpen &amp; Regelungstechnik<\u002Ftitle>\n<meta name=\"description\" content=\"Daniel Weiskopf — Entwicklungsingenieur mit Schwerpunkt Steuerungs- und Regelungstechnik für Wärmepumpen. Haag, Niederösterreich.\">\n<style>\n*,*::before,*::after{box-sizing:border-box}\nhtml,body{margin:0;padding:0}\nhtml{scroll-behavior:smooth}\n:root{--bg:#f2f1ec;--ink:#111311;--ink-2:#505550;--ink-3:#8b8f8a;--line:#d6d4cc;--accent:#e2522b;--dark:#121412;--sans:system-ui,-apple-system,BlinkMacSystemFont,\"Segoe UI\",\"Helvetica Neue\",Helvetica,Arial,sans-serif;--mono:ui-monospace,\"SF Mono\",Menlo,Consolas,monospace;--pad:clamp(20px,4vw,48px)}\nbody{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;font-feature-settings:\"tnum\" 1}\na{color:inherit;text-decoration:none}\na:hover{color:var(--accent)}\n::selection{background:var(--accent);color:#fff}\n.wrap{max-width:1360px;margin:0 auto;padding:0 var(--pad)}\n.lbl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}\n/* nav */\nnav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--ink)}\n.nav-inner{display:flex;justify-content:space-between;align-items:center;height:56px}\n.logo{font-weight:600;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}\n.logo i{width:10px;height:10px;background:var(--accent);display:block}\n.nav-links{display:flex;gap:28px;font-size:14px}\n.nav-links a{display:flex;gap:6px;align-items:baseline}\n.nav-links a span{font-family:var(--mono);font-size:10px;color:var(--ink-3)}\n/* hero */\n.hero{padding:clamp(56px,9vw,120px) 0 0}\nh1{font-weight:600;font-size:clamp(40px,7.2vw,112px);line-height:.98;letter-spacing:-.045em;margin:0;max-width:15ch;text-wrap:balance}\nh1 em{font-style:normal;color:var(--accent)}\n.hero-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-top:clamp(48px,7vw,96px);border-top:1px solid var(--ink);padding-top:24px}\n.hero-sub{grid-column:1/span 6;font-size:clamp(17px,1.5vw,20px);line-height:1.5;margin:0;color:var(--ink);text-wrap:pretty}\n.meta{grid-column:8/span 5;margin:0;display:grid;gap:0}\n.meta div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}\n.meta div:first-child{padding-top:4px}\n.meta dt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding-top:2px}\n.meta dd{margin:0}\n.hero-foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-top:56px;align-items:end}\n.stats{grid-column:1/span 9;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}\n.stat{padding:18px 20px 0 0;border-right:1px solid var(--line);margin-right:20px}\n.stat:last-child{border-right:none}\n.stat-n{font-size:clamp(36px,4vw,56px);font-weight:500;letter-spacing:-.04em;line-height:1}\n.stat-l{font-size:13px;color:var(--ink-2);margin-top:10px;max-width:22ch;line-height:1.35}\n.hero-cta{grid-column:10/span 3;justify-self:end}\n.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 22px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:500;transition:background .15s}\n.btn:hover{background:var(--accent);color:#fff}\n/* photo slot */\n.portrait{display:none}\n/* Foto einbinden: .portrait{display:block} setzen und <img> unten aktivieren */\n/* sections */\n.section{padding:clamp(80px,10vw,140px) 0 0}\n.sec-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end;padding-bottom:20px;border-bottom:1px solid var(--ink)}\n.sec-n{grid-column:1/span 2;font-family:var(--mono);font-size:12px;color:var(--accent)}\n.sec-title{grid-column:3/span 6;font-weight:600;font-size:clamp(32px,4vw,56px);letter-spacing:-.04em;line-height:1;margin:0}\n.sec-sub{grid-column:9/span 4;font-size:15px;color:var(--ink-2);text-align:right}\n/* work */\n.work{list-style:none;margin:0;padding:0}\n.work-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:32px 0;border-bottom:1px solid var(--line);position:relative;transition:background .2s}\n.work-row::before{content:\"\";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--accent);transition:width .35s ease}\n.work-row:hover::before{width:100%}\n.work-n{grid-column:1/span 2;display:flex;flex-direction:column;gap:6px}\n.work-n b{font-family:var(--mono);font-weight:400;font-size:12px;color:var(--ink)}\n.work-main{grid-column:3/span 4}\n.work-kind{margin-bottom:10px}\n.work-title{font-weight:600;font-size:clamp(20px,1.8vw,26px);letter-spacing:-.025em;line-height:1.15;margin:0;text-wrap:balance}\n.work-text{grid-column:7/span 4;font-size:15px;color:var(--ink-2);margin:0;text-wrap:pretty}\n.work-side{grid-column:11/span 2;display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right}\n.work-tags{display:flex;flex-wrap:wrap;gap:4px 10px;justify-content:flex-end;font-family:var(--mono);font-size:11px;color:var(--ink-2)}\n.work-metric{font-size:12px;color:var(--accent);font-weight:500}\n.metric-n:empty{display:none}\n/* about */\n.about-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding-top:40px}\n.about-text{grid-column:3/span 5}\n.about-text p{font-size:17px;color:var(--ink-2);line-height:1.65;margin:0 0 20px;text-wrap:pretty}\n.about-text strong{color:var(--ink);font-weight:600}\n.about-pull{font-size:clamp(22px,2vw,28px)!important;color:var(--ink)!important;font-weight:500;letter-spacing:-.02em;line-height:1.3!important;margin-top:36px!important;padding-top:20px;border-top:2px solid var(--accent);max-width:24ch}\n.timeline{grid-column:9/span 4}\n.tl-item{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}\n.tl-item:first-child{padding-top:4px}\n.tl-y{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.03em;padding-top:3px}\n.tl-item.active .tl-y{color:var(--accent)}\n.tl-t{font-weight:600;font-size:15px;line-height:1.3;letter-spacing:-.01em}\n.tl-sub{font-size:13px;color:var(--ink-2);margin-top:3px}\n/* now */\n.now-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}\n.now-item{padding:32px 32px 0 0;border-right:1px solid var(--line);margin-right:32px}\n.now-item:last-of-type{border-right:none;margin-right:0}\n.now-head{font-weight:600;font-size:18px;letter-spacing:-.015em;margin:12px 0 10px}\n.now-item p{margin:0;font-size:15px;color:var(--ink-2);text-wrap:pretty}\n/* contact */\n.contact{background:var(--dark);color:var(--bg);margin-top:clamp(80px,10vw,140px)}\n.contact a:hover{color:var(--accent)}\n.contact-inner{padding-top:clamp(64px,9vw,120px);padding-bottom:32px}\n.contact-top{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}\n.contact-eyebrow{grid-column:1/span 12;font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:24px}\n.contact-h{grid-column:1/span 12;font-weight:600;font-size:clamp(44px,8vw,128px);line-height:.95;letter-spacing:-.05em;margin:0 0 clamp(48px,6vw,88px)}\n.contact-h em{font-style:normal;color:var(--accent)}\n.contact-form{grid-column:1/span 6}\n.contact-form label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8b8f8a;margin-bottom:6px}\n.contact-form input,.contact-form textarea{width:100%;background:transparent;border:none;border-bottom:1px solid #3a3e3a;padding:10px 0 14px;color:var(--bg);font-family:var(--sans);font-size:18px;margin-bottom:28px;outline:none;border-radius:0;transition:border-color .2s}\n.contact-form input::placeholder,.contact-form textarea::placeholder{color:#5c615c}\n.contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent)}\n.contact-form textarea{min-height:110px;resize:vertical}\n.contact-form button{background:var(--accent);color:#fff;border:none;padding:16px 28px;font-size:15px;font-weight:500;font-family:var(--sans);cursor:pointer;transition:background .2s}\n.contact-form button:hover{background:#f06a43}\n.form-success{display:none;color:var(--accent);font-family:var(--mono);font-size:13px;margin-top:16px}\n.contact-links{grid-column:8/span 5;align-self:start;border-top:1px solid #3a3e3a}\n.c-link{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid #3a3e3a;font-size:24px;font-weight:500;letter-spacing:-.02em;transition:color .2s,padding .25s}\n.c-link:hover{padding-left:10px}\n.c-handle{font-family:var(--mono);font-size:12px;color:#8b8f8a;letter-spacing:.02em}\n.foot{margin-top:clamp(64px,8vw,120px);padding-top:20px;border-top:1px solid #3a3e3a;display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:11px;color:#8b8f8a}\n/* responsive */\n@media (max-width:960px){\n.hero-sub,.meta,.stats,.hero-cta,.sec-n,.sec-title,.sec-sub,.work-n,.work-main,.work-text,.work-side,.about-text,.timeline,.contact-form,.contact-links{grid-column:1/-1}\n.hero-cta{justify-self:start}\n.sec-sub{text-align:left}\n.sec-n{order:-1}\n.work-row{gap:12px}\n.work-n{flex-direction:row;gap:12px}\n.work-side{align-items:flex-start;text-align:left}\n.work-tags{justify-content:flex-start}\n.about-grid{gap:48px}\n.now-grid{grid-template-columns:1fr}\n.now-item{border-right:none;margin-right:0;padding-right:0;border-bottom:1px solid var(--line);padding-bottom:28px}\n.now-item:last-of-type{border-bottom:none}\n.contact-links{margin-top:32px}\n}\n@media (max-width:600px){\n.nav-links a:not(:last-child){display:none}\n.stats{grid-template-columns:1fr}\n.stat{border-right:none;margin-right:0;border-bottom:1px solid var(--line);padding-bottom:18px}\n.stat:last-child{border-bottom:none}\n.meta div{grid-template-columns:90px 1fr}\n.foot{flex-direction:column}\n}\n<\u002Fstyle>\n<\u002Fhead>\n<body>\n\n<nav>\n<div class=\"wrap nav-inner\">\n<a href=\"#top\" class=\"logo\"><i><\u002Fi><span>Daniel Weiskopf<\u002Fspan><\u002Fa>\n<div class=\"nav-links\">\n<a href=\"#work\"><span>01<\u002Fspan>Projekte<\u002Fa>\n<a href=\"#about\"><span>02<\u002Fspan>Über mich<\u002Fa>\n<a href=\"#now\"><span>03<\u002Fspan>Aktuell<\u002Fa>\n<a href=\"#contact\"><span>04<\u002Fspan>Kontakt<\u002Fa>\n<\u002Fdiv>\n<\u002Fdiv>\n<\u002Fnav>\n<section class=\"hero\" id=\"top\">\n<div class=\"wrap\">\n<h1>Energietechnik aus Überzeugung — von der <em>Thermodynamik<\u002Fem> bis zur Regelung, die sie im Alltag zum Laufen bringt.<\u002Fh1>\n<div class=\"hero-row\">\n<p class=\"hero-sub\">Umwelt-, Verfahrens- und Energietechniker (MSc) — und seit Jahren Entwicklungsingenieur für Wärmepumpen mit Schwerpunkt Steuerungs- und Regelungstechnik. Tagsüber bringe ich Wärmepumpen bei, ein bisschen effizienter zu werden. In der Freizeit am liebsten mit der Familie draußen in der Natur, oder bei einem Konzert.<\u002Fp>\n<dl class=\"meta\">\n<div class=\"portrait\"><!-- <img src=\"foto.jpg\" alt=\"Daniel Weiskopf\" style=\"width:100%;aspect-ratio:4/5;object-fit:cover;display:block\"> --><\u002Fdiv>\n<div><dt>Standort<\u002Fdt><dd>Haag, Niederösterreich<\u002Fdd><\u002Fdiv>\n<div><dt>Aktuell<\u002Fdt><dd>Wärmepumpen · Smart Home · API<\u002Fdd><\u002Fdiv>\n<div><dt>Interesse an<\u002Fdt><dd>Energie · IoT · Fotografie · Musik<\u002Fdd><\u002Fdiv>\n<\u002Fdl>\n<\u002Fdiv>\n<div class=\"hero-foot\">\n<div class=\"stats\">\n<div class=\"stat\"><div class=\"stat-n\">10+<\u002Fdiv><div class=\"stat-l\">Jahre in Energie- und Verfahrenstechnik<\u002Fdiv><\u002Fdiv>\n<div class=\"stat\"><div class=\"stat-n\">MSc<\u002Fdiv><div class=\"stat-l\">Umwelt-, Verfahrens- und Energietechnik<\u002Fdiv><\u002Fdiv>\n<div class=\"stat\"><div class=\"stat-n\">2018<\u002Fdiv><div class=\"stat-l\">MSc-Abschluss am MCI Innsbruck<\u002Fdiv><\u002Fdiv>\n<\u002Fdiv>\n<div class=\"hero-cta\"><a class=\"btn\" href=\"#work\">Projekte ansehen <span aria-hidden=\"true\">↓<\u002Fspan><\u002Fa><\u002Fdiv>\n<\u002Fdiv>\n<\u002Fdiv>\n<\u002Fsection>\n<section class=\"section\" id=\"work\">\n<div class=\"wrap\">\n<div class=\"sec-head\">\n<div class=\"sec-n\">01 / Projekte<\u002Fdiv>\n<h2 class=\"sec-title\">Ausgewählte Projekte<\u002Fh2>\n<div class=\"sec-sub\">Was ich entworfen, geregelt oder vermessen habe.<\u002Fdiv>\n<\u002Fdiv>\n<ol class=\"work\">\n<li class=\"work-row\">\n<div class=\"work-n\"><b>01<\u002Fb><span class=\"lbl\">2026 →<\u002Fspan><\u002Fdiv>\n<div class=\"work-main\"><div class=\"lbl work-kind\">Privatprojekt · eigenes Haus<\u002Fdiv><h3 class=\"work-title\">Telemetrie und Energieoptimierung mittels Raspberry Pi<\u002Fh3><\u002Fdiv>\n<p class=\"work-text\">Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.<\u002Fp>\n<div class=\"work-side\"><div class=\"work-tags\"><span>Raspberry Pi<\u002Fspan><span>Python<\u002Fspan><span>Modbus<\u002Fspan><span>MQTT<\u002Fspan><span>API<\u002Fspan><\u002Fdiv><div class=\"work-metric\"><span class=\"metric-n\"><\u002Fspan>Energiekosten Haushalt<\u002Fdiv><\u002Fdiv>\n<\u002Fli>\n<li class=\"work-row\">\n<div class=\"work-n\"><b>02<\u002Fb><span class=\"lbl\">2025 →<\u002Fspan><\u002Fdiv>\n<div class=\"work-main\"><div class=\"lbl work-kind\">Lernprojekt · Edge AI<\u002Fdiv><h3 class=\"work-title\">Edge AI mit M5Stack Core2<\u002Fh3><\u002Fdiv>\n<p class=\"work-text\">Einstieg in TinyML direkt auf dem Microcontroller: Gestenerkennung und einfache Klassifikation ohne Cloud-Anbindung. Der M5Stack Core2 läuft mit Arduino IDE und einem abgespeckten Modell — alles lokal, kein Server nötig.<\u002Fp>\n<div class=\"work-side\"><div class=\"work-tags\"><span>M5Stack Core2<\u002Fspan><span>Arduino IDE<\u002Fspan><span>TinyML<\u002Fspan><span>IoT<\u002Fspan><\u002Fdiv><div class=\"work-metric\"><span class=\"metric-n\"><\u002Fspan>lokal · kein Cloud-Zwang<\u002Fdiv><\u002Fdiv>\n<\u002Fli>\n<li class=\"work-row\">\n<div class=\"work-n\"><b>03<\u002Fb><span class=\"lbl\">2025 →<\u002Fspan><\u002Fdiv>\n<div class=\"work-main\"><div class=\"lbl work-kind\">Privatprojekt · eigenes Haus<\u002Fdiv><h3 class=\"work-title\">Ladeoptimierung des PV-Batteriespeichers<\u002Fh3><\u002Fdiv>\n<p class=\"work-text\">Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiseerträge maximiert und der Netzbezug minimiert werden.<\u002Fp>\n<div class=\"work-side\"><div class=\"work-tags\"><span>Python<\u002Fspan><span>API<\u002Fspan><span>Fronius<\u002Fspan><\u002Fdiv><div class=\"work-metric\"><span class=\"metric-n\"><\u002Fspan>Energieoptimierung<\u002Fdiv><\u002Fdiv>\n<\u002Fli>\n<li class=\"work-row\">\n<div class=\"work-n\"><b>04<\u002Fb><span class=\"lbl\">2024 →<\u002Fspan><\u002Fdiv>\n<div class=\"work-main\"><div class=\"lbl work-kind\">Privatprojekt · Hausgarten<\u002Fdiv><h3 class=\"work-title\">Smartes Gewächshaus<\u002Fh3><\u002Fdiv>\n<p class=\"work-text\">Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon — und genau das ist der Punkt.<\u002Fp>\n<div class=\"work-side\"><div class=\"work-tags\"><span>Raspberry Pi<\u002Fspan><span>Python<\u002Fspan><span>Relais<\u002Fspan><span>Sensorik<\u002Fspan><\u002Fdiv><div class=\"work-metric\"><span class=\"metric-n\"><\u002Fspan>autonom<\u002Fdiv><\u002Fdiv>\n<\u002Fli>\n<li class=\"work-row\">\n<div class=\"work-n\"><b>05<\u002Fb><span class=\"lbl\">2018<\u002Fspan><\u002Fdiv>\n<div class=\"work-main\"><div class=\"lbl work-kind\">Forschung · MCI Innsbruck<\u002Fdiv><h3 class=\"work-title\">Thermochemische Energiespeicherung am Beispiel des Mg(OH)<sub>2<\u002Fsub>/MgO-Reaktionsnetzwerkes<\u002Fh3><\u002Fdiv>\n<p class=\"work-text\">Untersuchung des Speichermediums sowie Aufbau eines Testreaktors und Simulation dessen.<\u002Fp>\n<div class=\"work-side\"><div class=\"work-tags\"><span>Matlab<\u002Fspan><span>Versuchsaufbau<\u002Fspan><span>Simulation<\u002Fspan><\u002Fdiv><div class=\"work-metric\"><span class=\"metric-n\"><\u002Fspan>Energiewende<\u002Fdiv><\u002Fdiv>\n<\u002Fli>\n<\u002Fol>\n<\u002Fdiv>\n<\u002Fsection>\n<section class=\"section\" id=\"about\">\n<div class=\"wrap\">\n<div class=\"sec-head\">\n<div class=\"sec-n\">02 / Über mich<\u002Fdiv>\n<h2 class=\"sec-title\">Über mich<\u002Fh2>\n<\u002Fdiv>\n<div class=\"about-grid\">\n<div class=\"about-text\">\n<p>Aufgewachsen in den Alpen, wo man die Gletscher Jahr für Jahr nach oben wandern sieht — abstrakt fühlte sich das Klimathema von dort aus nie an. Auch das war ein Grund weshalb ich Umwelt-, Verfahrens-, und Energietechnik studiert habe.<\u002Fp>\n<p>Seit 2019 arbeite ich bei einem Wärmepumpenhersteller in der Entwicklung. Mein Bereich: <strong>Steuerung und Regelung<\u002Fstrong> — Firmware, Regelkreise, Zustandsmaschinen und die Felddaten, an denen sich zeigt, ob die Theorie gestimmt hat, sowie 3rd Level Support der Techniker im Feld.<\u002Fp>\n<p>Wenn ich nicht am Schreibtisch sitze, bin ich am liebsten draußen in der Natur — wandern, am Berg, in der Wand am Kletterturm oder einfach an der frischen Luft in unserem Garten. Genauso wichtig: Musik. Ich höre breit und gehe so oft auf Konzerte, wie es geht — live klingt eben doch anders.<\u002Fp>\n<p>Daneben entstehen viele Bastelprojekte: ein Raspberry Pi, der Wetterdaten über eine API in die Ladelogik meines Fronius-Wechselrichters einbindet, und ein Terminal-Display für alle Haustechnik-Kennzahlen. Nicht weil es sein muss, sondern weil es Spaß macht.<\u002Fp>\n<p class=\"about-pull\">Mir geht es um eine lebenswerte Zukunft für die nächste Generation. Das bin ich meinen Kindern schuldig.<\u002Fp>\n<\u002Fdiv>\n<div class=\"timeline\">\n<div class=\"tl-item active\"><div class=\"tl-y\">seit 2019<\u002Fdiv><div><div class=\"tl-t\">Entwicklungsingenieur<\u002Fdiv><div class=\"tl-sub\">Wärmepumpen · Steuerung &amp; Regelung<\u002Fdiv><\u002Fdiv><\u002Fdiv>\n<div class=\"tl-item\"><div class=\"tl-y\">2016 — 2018<\u002Fdiv><div><div class=\"tl-t\">MSc, Umwelt-, Verfahrens- und Energietechnik<\u002Fdiv><div class=\"tl-sub\">MCI Innsbruck<\u002Fdiv><\u002Fdiv><\u002Fdiv>\n<div class=\"tl-item\"><div class=\"tl-y\">2013 — 2016<\u002Fdiv><div><div class=\"tl-t\">BSc, Umwelt-, Verfahrens- und Energietechnik<\u002Fdiv><div class=\"tl-sub\">MCI Innsbruck<\u002Fdiv><\u002Fdiv><\u002Fdiv>\n<div class=\"tl-item\"><div class=\"tl-y\">2006 — 2013<\u002Fdiv><div><div class=\"tl-t\">Inbetriebnahmetechniker<\u002Fdiv><div class=\"tl-sub\">Industriedrucksysteme · Inbetriebnahme und Endabnahme<\u002Fdiv><\u002Fdiv><\u002Fdiv>\n<div class=\"tl-item\"><div class=\"tl-y\">2001 — 2005<\u002Fdiv><div><div class=\"tl-t\">Fachschule für Elektronik<\u002Fdiv><div class=\"tl-sub\">HTBLVA Innsbruck<\u002Fdiv><\u002Fdiv><\u002Fdiv>\n<\u002Fdiv>\n<\u002Fdiv>\n<\u002Fdiv>\n<\u002Fsection>\n<section class=\"section\" id=\"now\">\n<div class=\"wrap\">\n<div class=\"sec-head\">\n<div class=\"sec-n\">03 / Aktuell<\u002Fdiv>\n<h2 class=\"sec-title\">Aktuell<\u002Fh2>\n<div class=\"sec-sub\">Stand: Oktober 2026.<\u002Fdiv>\n<\u002Fdiv>\n<div class=\"now-grid\">\n<div class=\"now-item\"><div class=\"lbl\">Job<\u002Fdiv><div class=\"now-head\">Im Job<\u002Fdiv><p>Entwicklung von neuen Wärmepumpensystemen, die die Energiewende antreiben.<\u002Fp><\u002Fdiv>\n<div class=\"now-item\"><div class=\"lbl\">Werkbank<\u002Fdiv><div class=\"now-head\">An der Werkbank<\u002Fdiv><p>Zwei Projekte parallel: eine API-Bridge, die die Ladelogik meines Fronius-Batteriespeichers an die Wettervorhersage koppelt — und die Automatisierung des Gewächshauses (Bewässerung, Beschattung, Datenlogging).<\u002Fp><\u002Fdiv>\n<div class=\"now-item\"><div class=\"lbl\">Lektüre<\u002Fdiv><div class=\"now-head\">Lese gerade<\u002Fdiv><p>Joey Goebel, „Sunset Flip\". Daneben gerne Fachvideos zu Smart Home und erneuerbaren Energien — Stromspeicher, Wärmepumpen-Setups, kleine Bastellösungen aus der Community.<\u002Fp><\u002Fdiv>\n<!-- <div class=\"now-item\"><div class=\"lbl\">Suche<\u002Fdiv><div class=\"now-head\">Suche<\u002Fdiv><p>Ein Team, das echte Hardware für die Energiewende baut. Bevorzugt im Raum Linz, Steyr, Amstetten — oder remote.<\u002Fp><\u002Fdiv> -->\n<\u002Fdiv>\n<\u002Fdiv>\n<\u002Fsection>\n<div class=\"contact\" id=\"contact\">\n<div class=\"wrap contact-inner\">\n<div class=\"contact-top\">\n<div class=\"contact-eyebrow\">04 / Kontakt<\u002Fdiv>\n<h2 class=\"contact-h\">Lust auf ein Gespräch?<br><em>Schreib mir.<\u002Fem><\u002Fh2>\n<form class=\"contact-form\" action=\"https://api.web3forms.com/submit\" method=\"POST\" id=\"contact-form\">\n<input type=\"hidden\" name=\"access_key\" value=\"80e1e346-2b0c-4d53-8830-ddc244b1aaaa\">\n<input type=\"hidden\" name=\"subject\" value=\"Neue Nachricht von deinem Portfolio\">\n<input type=\"hidden\" name=\"redirect\" value=\"false\">\n<label for=\"cf-name\">Name<\u002Flabel>\n<input type=\"text\" id=\"cf-name\" name=\"name\" placeholder=\"Dein Name\" required=\"\">\n<label for=\"cf-email\">E-Mail<\u002Flabel>\n<input type=\"email\" id=\"cf-email\" name=\"email\" placeholder=\"deine@email.at\" required=\"\">\n<label for=\"cf-msg\">Nachricht<\u002Flabel>\n<textarea id=\"cf-msg\" name=\"message\" placeholder=\"Worum geht's?\" required=\"\"><\u002Ftextarea>\n<button type=\"submit\">Absenden →<\u002Fbutton>\n<p class=\"form-success\" id=\"form-success\">✓ Danke — ich melde mich bald!<\u002Fp>\n<\u002Fform>\n<div class=\"contact-links\">\n<a href=\"https://github.com/WeisDan\" target=\"_blank\" rel=\"noreferrer\" class=\"c-link\"><span>GitHub<\u002Fspan><span class=\"c-handle\">@WeisDan ↗<\u002Fspan><\u002Fa>\n<a href=\"https://linkedin.com/in/daniel-weiskopf\" target=\"_blank\" rel=\"noreferrer\" class=\"c-link\"><span>LinkedIn<\u002Fspan><span class=\"c-handle\">/daniel-weiskopf ↗<\u002Fspan><\u002Fa>\n<\u002Fdiv>\n<\u002Fdiv>\n<div class=\"foot\"><span>© 2026 Daniel Weiskopf<\u002Fspan><span>Haag, Niederösterreich<\u002Fspan><\u002Fdiv>\n<\u002Fdiv>\n<\u002Fdiv>\n<script>\ndocument.getElementById('contact-form').addEventListener('submit',async function(e){e.preventDefault();const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});if(res.ok){this.reset();document.getElementById('form-success').style.display='block';}});\n<\u002Fscript>\n\n<\u002Fbody><\u002Fhtml>"
+  </script>
+</body>
+</html>
