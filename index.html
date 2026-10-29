@@ -219,7 +219,7 @@
       grid-template-columns: 1fr 1fr;
       grid-auto-rows: auto;
     }
-    .work-grid { grid-template-rows: repeat(4, auto); }
+    .work-grid { grid-template-rows: repeat(5, auto); }
     .work-card {
       background: var(--card);
       border: 1px solid var(--line);
@@ -360,6 +360,30 @@
       margin: 0 0 64px 0; max-width: 18ch;
     }
     .contact-h em { color: var(--warm); font-style: italic; }
+    /* ── CONTACT FORM ── */
+    .contact-form { max-width: 560px; margin-bottom: 64px; }
+    .contact-form label {
+      display: block; font-size: 12px; font-family: var(--mono);
+      letter-spacing: 0.08em; color: var(--warm); margin-bottom: 8px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px; padding: 14px 16px;
+      color: var(--bg); font-family: var(--sans); font-size: 15px;
+      margin-bottom: 20px; outline: none; transition: border-color 0.2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--warm); }
+    .contact-form textarea { min-height: 140px; resize: vertical; }
+    .contact-form button {
+      background: var(--warm); color: #fff; border: none;
+      padding: 14px 32px; border-radius: 6px; font-size: 15px;
+      font-family: var(--sans); cursor: pointer; transition: opacity 0.2s;
+    }
+    .contact-form button:hover { opacity: 0.85; }
+    .form-success { display: none; color: var(--warm); font-family: var(--mono); font-size: 14px; margin-top: 16px; }
     .contact-links { display: grid; gap: 4px; max-width: 720px; }
     .c-link {
       display: flex; justify-content: space-between; align-items: center;
@@ -512,7 +536,7 @@
         </div>
         <div class="meta-row">
           <span class="meta-k">Interesse an</span>
-          <span>Energie · IoT · Natur · Musik</span>
+          <span>Energie · IoT · Fotografie · Musik</span>
         </div>
       </div>
     </div>
@@ -530,61 +554,69 @@
   </div>
   <div class="work-grid">
 
-<article class="work-card">
-      <div class="work-head">
-        <span class="work-n" style="">01</span>
-        <span style=""><span style="letter-spacing: 0.6px;">2025 →</span></span></div>
-      <div class="work-lede"><div class="work-kind">Privatprojekt · eigenes Haus</div>
-        <h3 class="work-title">Ladeoptimierung des PV-Batteriespeichers</h3>
-        <p class="work-text">Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiserträge maximiert und der Netzbezug minimiert werden.</p></div>
-        <div class="work-tags">
-          <span class="tag" style="">Python</span>
-          <span class="tag" style="">API</span>
-          <span class="tag" style="">Prüfstand</span>
-        </div>
-      <div class="work-metric">
-        <div class="metric-n" style=""><br></div>
-        <div class="metric-l" style="">Energieoptimierung</div>
-      </div>
-    </article>
-
     <article class="work-card">
       <div class="work-head">
-        <span class="work-n" style="">02</span>
-        <span style="">2026 →</span>
+        <span class="work-n">01</span>
+        <span>2026 →</span>
       </div>
-      <div class="work-lede"><div class="work-kind">Privatprojekt · eigenes Haus</div>
-        <h3 class="work-title" style="">Telemetrie und Energieoptmierung mittels Raspberry Pi Cluster</h3>
-        <p class="work-text">Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.</p></div>
-        <div class="work-tags">
-          <span class="tag" style="">Raspberry Pi</span>
-          <span class="tag">Python</span>
-          <span class="tag">Modbus</span>
-          <span class="tag">MQTT</span>
-          <span class="tag">API</span>
-        </div>
+      <div class="work-lede">
+        <div class="work-kind">Privatprojekt · eigenes Haus</div>
+        <h3 class="work-title">Telemetrie und Energieoptimierung mittels Raspberry Pi</h3>
+        <p class="work-text">Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">Raspberry Pi</span>
+        <span class="tag">Python</span>
+        <span class="tag">Modbus</span>
+        <span class="tag">MQTT</span>
+        <span class="tag">API</span>
+      </div>
       <div class="work-metric">
-        <div class="metric-n" style=""><br></div>
+        <div class="metric-n"></div>
         <div class="metric-l">Energiekosten Haushalt</div>
       </div>
     </article>
 
     <article class="work-card">
       <div class="work-head">
-        <span class="work-n" style="">03</span>
-        <span>2018</span>
+        <span class="work-n">02</span>
+        <span>2025 →</span>
       </div>
-      <div class="work-lede"><div class="work-kind">Forschung · MCI Innsbruck</div>
-        <h3 class="work-title">Thermochemische Energiespeicherung am Beispiel des Mg(OH)<sub>2</sub>/MgO-Reaktionsnetzwerkes</h3>
-        <p class="work-text">Untersuchung des Speichermediums sowie Aufbau eines Testreaktors und Simulation dessen</p></div>
-        <div class="work-tags">
-          <span class="tag">Matlab</span>
-          <span class="tag">Versuchsaufbau</span>
-          <span class="tag">Simulation</span>
-        </div>
+      <div class="work-lede">
+        <div class="work-kind">Lernprojekt · Edge AI</div>
+        <h3 class="work-title">Edge AI mit M5Stack Core2</h3>
+        <p class="work-text">Einstieg in TinyML direkt auf dem Microcontroller: Gestenerkennung und einfache Klassifikation ohne Cloud-Anbindung. Der M5Stack Core2 läuft mit Arduino IDE und einem abgespeckten Modell — alles lokal, kein Server nötig.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">M5Stack Core2</span>
+        <span class="tag">Arduino IDE</span>
+        <span class="tag">TinyML</span>
+        <span class="tag">IoT</span>
+      </div>
       <div class="work-metric">
-        <div class="metric-n" style=""><br></div>
-        <div class="metric-l" style="">Energiewende</div>
+        <div class="metric-n"></div>
+        <div class="metric-l">lokal · kein Cloud-Zwang</div>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-head">
+        <span class="work-n">03</span>
+        <span>2025 →</span>
+      </div>
+      <div class="work-lede">
+        <div class="work-kind">Privatprojekt · eigenes Haus</div>
+        <h3 class="work-title">Ladeoptimierung des PV-Batteriespeichers</h3>
+        <p class="work-text">Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiseerträge maximiert und der Netzbezug minimiert werden.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">Python</span>
+        <span class="tag">API</span>
+        <span class="tag">Fronius</span>
+      </div>
+      <div class="work-metric">
+        <div class="metric-n"></div>
+        <div class="metric-l">Energieoptimierung</div>
       </div>
     </article>
 
@@ -593,18 +625,41 @@
         <span class="work-n">04</span>
         <span>2024 →</span>
       </div>
-      <div class="work-lede"><div class="work-kind">Privatprojekt · Hausgarten</div>
+      <div class="work-lede">
+        <div class="work-kind">Privatprojekt · Hausgarten</div>
         <h3 class="work-title">Smartes Gewächshaus</h3>
-        <p class="work-text">Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon — und genau das ist der Punkt.</p></div>
-        <div class="work-tags">
-          <span class="tag">Raspberry Pi</span>
-          <span class="tag">Python</span>
-          <span class="tag">Relais</span>
-          <span class="tag">Sensorik</span>
-        </div>
+        <p class="work-text">Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon — und genau das ist der Punkt.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">Raspberry Pi</span>
+        <span class="tag">Python</span>
+        <span class="tag">Relais</span>
+        <span class="tag">Sensorik</span>
+      </div>
       <div class="work-metric">
         <div class="metric-n"></div>
         <div class="metric-l">autonom</div>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-head">
+        <span class="work-n">05</span>
+        <span>2018</span>
+      </div>
+      <div class="work-lede">
+        <div class="work-kind">Forschung · MCI Innsbruck</div>
+        <h3 class="work-title">Thermochemische Energiespeicherung am Beispiel des Mg(OH)<sub>2</sub>/MgO-Reaktionsnetzwerkes</h3>
+        <p class="work-text">Untersuchung des Speichermediums sowie Aufbau eines Testreaktors und Simulation dessen.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">Matlab</span>
+        <span class="tag">Versuchsaufbau</span>
+        <span class="tag">Simulation</span>
+      </div>
+      <div class="work-metric">
+        <div class="metric-n"></div>
+        <div class="metric-l">Energiewende</div>
       </div>
     </article>
 
@@ -689,7 +744,7 @@
   <div class="sec-head">
     <div class="sec-kicker">— 03</div>
     <h2 class="sec-title">Aktuell</h2>
-    <div class="sec-sub">Stand: April 2026.</div>
+    <div class="sec-sub">Stand: Oktober 2026.</div>
   </div>
   <div class="now-grid">
     <div class="now-item">
@@ -705,7 +760,7 @@
     <div class="now-item">
       <div class="now-ic">●</div>
       <div class="now-head">Lese gerade</div>
-      <p>Beatrice Salvioni, „Malacarne". Daneben gerne Fachvideos zu Smart Home und erneuerbaren Energien — Stromspeicher, Wärmepumpen-Setups, kleine Bastellösungen aus der Community.</p>
+      <p>Joey Goebel, „Sunset Flip". Daneben gerne Fachvideos zu Smart Home und erneuerbaren Energien — Stromspeicher, Wärmepumpen-Setups, kleine Bastellösungen aus der Community.</p>
     </div>
     <!-- <div class="now-item">
       <div class="now-ic">○</div>
@@ -723,6 +778,36 @@
       Lust auf ein Gespräch?<br>
       <em>Schreib mir.</em>
     </h2>
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+      <input type="hidden" name="access_key" value="80e1e346-2b0c-4d53-8830-ddc244b1aaaa">
+      <input type="hidden" name="subject" value="Neue Nachricht von deinem Portfolio">
+      <input type="hidden" name="redirect" value="false">
+
+      <label for="cf-name">Name</label>
+      <input type="text" id="cf-name" name="name" placeholder="Dein Name" required>
+
+      <label for="cf-email">E-Mail</label>
+      <input type="email" id="cf-email" name="email" placeholder="deine@email.at" required>
+
+      <label for="cf-msg">Nachricht</label>
+      <textarea id="cf-msg" name="message" placeholder="Worum geht's?" required></textarea>
+
+      <button type="submit">Absenden →</button>
+      <p class="form-success" id="form-success">✓ Danke — ich melde mich bald!</p>
+    </form>
+
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = new FormData(this);
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+        if (res.ok) {
+          this.reset();
+          document.getElementById('form-success').style.display = 'block';
+        }
+      });
+    </script>
+
     <div class="contact-links">
       <!-- <a href="/cdn-cgi/l/email-protection#d6beb3babab996a1b3bfa5bdb9a6b0f8b2b3a0" class="c-link c-primary" style=""><span class="__cf_email__" data-cfemail="295e4c405a4246594f764d4847404c456941465d44484045074a4644">[email&#160;protected]</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -747,4 +832,4 @@
 
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body></html>
+</body></html>
