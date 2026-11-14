@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="de"><head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daniel Weiskopf — Entwicklungsingenieur · Wärmepumpen &amp; Regelungstechnik</title>
-<meta name="description" content="Daniel Weiskopf — Entwicklungsingenieur mit Schwerpunkt Steuerungs- und Regelungstechnik für Wärmepumpen. Haag, Niederösterreich.">
-<style>
-*,*::before,*::after{box-sizing:border-box}
+<html lang="de">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Daniel Weiskopf — Entwicklungsingenieur · Wärmepumpen &amp; Regelungstechnik
+  </title>
+  <meta content="Daniel Weiskopf — Entwicklungsingenieur mit Schwerpunkt Steuerungs- und Regelungstechnik für Wärmepumpen. Haag, Niederösterreich." name="description"/>
+  <style>
+   *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth}
 :root{--bg:#f2f1ec;--ink:#111311;--ink-2:#505550;--ink-3:#8b8f8a;--line:#d6d4cc;--accent:#e2522b;--dark:#121412;--sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--pad:clamp(20px,4vw,48px)}
@@ -132,151 +135,575 @@ h1 em{font-style:normal;color:var(--accent)}
 .meta div{grid-template-columns:90px 1fr}
 .foot{flex-direction:column}
 }
-</style>
-</head>
-<body>
-
-<nav>
-<div class="wrap nav-inner">
-<a href="#top" class="logo"><i></i><span>Daniel Weiskopf</span></a>
-<div class="nav-links">
-<a href="#work"><span>01</span>Projekte</a>
-<a href="#about"><span>02</span>Über mich</a>
-<a href="#now"><span>03</span>Aktuell</a>
-<a href="#contact"><span>04</span>Kontakt</a>
-</div>
-</div>
-</nav>
-<section class="hero" id="top">
-<div class="wrap">
-<h1>Energietechnik aus Überzeugung — von der <em>Thermodynamik</em> bis zur Regelung, die sie im Alltag zum Laufen bringt.</h1>
-<div class="hero-row">
-<p class="hero-sub">Umwelt-, Verfahrens- und Energietechniker (MSc) — und seit Jahren Entwicklungsingenieur für Wärmepumpen mit Schwerpunkt Steuerungs- und Regelungstechnik. Tagsüber bringe ich Wärmepumpen bei, ein bisschen effizienter zu werden. In der Freizeit am liebsten mit der Familie draußen in der Natur, oder bei einem Konzert.</p>
-<dl class="meta">
-<div class="portrait"><!-- <img src="foto.jpg" alt="Daniel Weiskopf" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block"> --></div>
-<div><dt>Standort</dt><dd>Haag, Niederösterreich</dd></div>
-<div><dt>Aktuell</dt><dd>Wärmepumpen · Smart Home · API</dd></div>
-<div><dt>Interesse an</dt><dd>Energie · IoT · Fotografie · Musik</dd></div>
-</dl>
-</div>
-<div class="hero-foot">
-<div class="stats">
-<div class="stat"><div class="stat-n">10+</div><div class="stat-l">Jahre in Energie- und Verfahrenstechnik</div></div>
-<div class="stat"><div class="stat-n">MSc</div><div class="stat-l">Umwelt-, Verfahrens- und Energietechnik</div></div>
-<div class="stat"><div class="stat-n">2018</div><div class="stat-l">MSc-Abschluss am MCI Innsbruck</div></div>
-</div>
-<div class="hero-cta"><a class="btn" href="#work">Projekte ansehen <span aria-hidden="true">↓</span></a></div>
-</div>
-</div>
-</section>
-<section class="section" id="work">
-<div class="wrap">
-<div class="sec-head">
-<div class="sec-n">01 / Projekte</div>
-<h2 class="sec-title">Ausgewählte Projekte</h2>
-<div class="sec-sub">Was ich entworfen, geregelt oder vermessen habe.</div>
-</div>
-<ol class="work">
-<li class="work-row">
-<div class="work-n"><b>01</b><span class="lbl">2026 →</span></div>
-<div class="work-main"><div class="lbl work-kind">Privatprojekt · eigenes Haus</div><h3 class="work-title">Telemetrie und Energieoptimierung mittels Raspberry Pi</h3></div>
-<p class="work-text">Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.</p>
-<div class="work-side"><div class="work-tags"><span>Raspberry Pi</span><span>Python</span><span>Modbus</span><span>MQTT</span><span>API</span></div><div class="work-metric"><span class="metric-n"></span>Energiekosten Haushalt</div></div>
-</li>
-<li class="work-row">
-<div class="work-n"><b>02</b><span class="lbl">2025 →</span></div>
-<div class="work-main"><div class="lbl work-kind">Lernprojekt · Edge AI</div><h3 class="work-title">Edge AI mit M5Stack Core2</h3></div>
-<p class="work-text">Einstieg in TinyML direkt auf dem Microcontroller: Gestenerkennung und einfache Klassifikation ohne Cloud-Anbindung. Der M5Stack Core2 läuft mit Arduino IDE und einem abgespeckten Modell — alles lokal, kein Server nötig.</p>
-<div class="work-side"><div class="work-tags"><span>M5Stack Core2</span><span>Arduino IDE</span><span>TinyML</span><span>IoT</span></div><div class="work-metric"><span class="metric-n"></span>lokal · kein Cloud-Zwang</div></div>
-</li>
-<li class="work-row">
-<div class="work-n"><b>03</b><span class="lbl">2025 →</span></div>
-<div class="work-main"><div class="lbl work-kind">Privatprojekt · eigenes Haus</div><h3 class="work-title">Ladeoptimierung des PV-Batteriespeichers</h3></div>
-<p class="work-text">Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiseerträge maximiert und der Netzbezug minimiert werden.</p>
-<div class="work-side"><div class="work-tags"><span>Python</span><span>API</span><span>Fronius</span></div><div class="work-metric"><span class="metric-n"></span>Energieoptimierung</div></div>
-</li>
-<li class="work-row">
-<div class="work-n"><b>04</b><span class="lbl">2024 →</span></div>
-<div class="work-main"><div class="lbl work-kind">Privatprojekt · Hausgarten</div><h3 class="work-title">Smartes Gewächshaus</h3></div>
-<p class="work-text">Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon — und genau das ist der Punkt.</p>
-<div class="work-side"><div class="work-tags"><span>Raspberry Pi</span><span>Python</span><span>Relais</span><span>Sensorik</span></div><div class="work-metric"><span class="metric-n"></span>autonom</div></div>
-</li>
-<li class="work-row">
-<div class="work-n"><b>05</b><span class="lbl">2018</span></div>
-<div class="work-main"><div class="lbl work-kind">Forschung · MCI Innsbruck</div><h3 class="work-title">Thermochemische Energiespeicherung am Beispiel des Mg(OH)<sub>2</sub>/MgO-Reaktionsnetzwerkes</h3></div>
-<p class="work-text">Untersuchung des Speichermediums sowie Aufbau eines Testreaktors und Simulation dessen.</p>
-<div class="work-side"><div class="work-tags"><span>Matlab</span><span>Versuchsaufbau</span><span>Simulation</span></div><div class="work-metric"><span class="metric-n"></span>Energiewende</div></div>
-</li>
-</ol>
-</div>
-</section>
-<section class="section" id="about">
-<div class="wrap">
-<div class="sec-head">
-<div class="sec-n">02 / Über mich</div>
-<h2 class="sec-title">Über mich</h2>
-</div>
-<div class="about-grid">
-<div class="about-text">
-<p>Aufgewachsen in den Alpen, wo man die Gletscher Jahr für Jahr nach oben wandern sieht — abstrakt fühlte sich das Klimathema von dort aus nie an. Auch das war ein Grund weshalb ich Umwelt-, Verfahrens-, und Energietechnik studiert habe.</p>
-<p>Seit 2019 arbeite ich bei einem Wärmepumpenhersteller in der Entwicklung. Mein Bereich: <strong>Steuerung und Regelung</strong> — Firmware, Regelkreise, Zustandsmaschinen und die Felddaten, an denen sich zeigt, ob die Theorie gestimmt hat, sowie 3rd Level Support der Techniker im Feld.</p>
-<p>Wenn ich nicht am Schreibtisch sitze, bin ich am liebsten draußen in der Natur — wandern, am Berg, in der Wand am Kletterturm oder einfach an der frischen Luft in unserem Garten. Genauso wichtig: Musik. Ich höre breit und gehe so oft auf Konzerte, wie es geht — live klingt eben doch anders.</p>
-<p>Daneben entstehen viele Bastelprojekte: ein Raspberry Pi, der Wetterdaten über eine API in die Ladelogik meines Fronius-Wechselrichters einbindet, und ein Terminal-Display für alle Haustechnik-Kennzahlen. Nicht weil es sein muss, sondern weil es Spaß macht.</p>
-<p class="about-pull">Mir geht es um eine lebenswerte Zukunft für die nächste Generation. Das bin ich meinen Kindern schuldig.</p>
-</div>
-<div class="timeline">
-<div class="tl-item active"><div class="tl-y">seit 2019</div><div><div class="tl-t">Entwicklungsingenieur</div><div class="tl-sub">Wärmepumpen · Steuerung &amp; Regelung</div></div></div>
-<div class="tl-item"><div class="tl-y">2016 — 2018</div><div><div class="tl-t">MSc, Umwelt-, Verfahrens- und Energietechnik</div><div class="tl-sub">MCI Innsbruck</div></div></div>
-<div class="tl-item"><div class="tl-y">2013 — 2016</div><div><div class="tl-t">BSc, Umwelt-, Verfahrens- und Energietechnik</div><div class="tl-sub">MCI Innsbruck</div></div></div>
-<div class="tl-item"><div class="tl-y">2006 — 2013</div><div><div class="tl-t">Inbetriebnahmetechniker</div><div class="tl-sub">Industriedrucksysteme · Inbetriebnahme und Endabnahme</div></div></div>
-<div class="tl-item"><div class="tl-y">2001 — 2005</div><div><div class="tl-t">Fachschule für Elektronik</div><div class="tl-sub">HTBLVA Innsbruck</div></div></div>
-</div>
-</div>
-</div>
-</section>
-<section class="section" id="now">
-<div class="wrap">
-<div class="sec-head">
-<div class="sec-n">03 / Aktuell</div>
-<h2 class="sec-title">Aktuell</h2>
-<div class="sec-sub">Stand: Oktober 2026.</div>
-</div>
-<div class="now-grid">
-<div class="now-item"><div class="lbl">Job</div><div class="now-head">Im Job</div><p>Entwicklung von neuen Wärmepumpensystemen, die die Energiewende antreiben.</p></div>
-<div class="now-item"><div class="lbl">Werkbank</div><div class="now-head">An der Werkbank</div><p>Zwei Projekte parallel: eine API-Bridge, die die Ladelogik meines Fronius-Batteriespeichers an die Wettervorhersage koppelt — und die Automatisierung des Gewächshauses (Bewässerung, Beschattung, Datenlogging).</p></div>
-<div class="now-item"><div class="lbl">Lektüre</div><div class="now-head">Lese gerade</div><p>Joey Goebel, „Sunset Flip". Daneben gerne Fachvideos zu Smart Home und erneuerbaren Energien — Stromspeicher, Wärmepumpen-Setups, kleine Bastellösungen aus der Community.</p></div>
-<!-- <div class="now-item"><div class="lbl">Suche</div><div class="now-head">Suche</div><p>Ein Team, das echte Hardware für die Energiewende baut. Bevorzugt im Raum Linz, Steyr, Amstetten — oder remote.</p></div> -->
-</div>
-</div>
-</section>
-<div class="contact" id="contact">
-<div class="wrap contact-inner">
-<div class="contact-top">
-<div class="contact-eyebrow">04 / Kontakt</div>
-<h2 class="contact-h">Lust auf ein Gespräch?<br><em>Schreib mir.</em></h2>
-<form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
-<input type="hidden" name="access_key" value="80e1e346-2b0c-4d53-8830-ddc244b1aaaa">
-<input type="hidden" name="subject" value="Neue Nachricht von deinem Portfolio">
-<input type="hidden" name="redirect" value="false">
-<label for="cf-name">Name</label>
-<input type="text" id="cf-name" name="name" placeholder="Dein Name" required="">
-<label for="cf-email">E-Mail</label>
-<input type="email" id="cf-email" name="email" placeholder="deine@email.at" required="">
-<label for="cf-msg">Nachricht</label>
-<textarea id="cf-msg" name="message" placeholder="Worum geht's?" required=""></textarea>
-<button type="submit">Absenden →</button>
-<p class="form-success" id="form-success">✓ Danke — ich melde mich bald!</p>
-</form>
-<div class="contact-links">
-<a href="https://github.com/WeisDan" target="_blank" rel="noreferrer" class="c-link"><span>GitHub</span><span class="c-handle">@WeisDan ↗</span></a>
-<a href="https://linkedin.com/in/daniel-weiskopf" target="_blank" rel="noreferrer" class="c-link"><span>LinkedIn</span><span class="c-handle">/daniel-weiskopf ↗</span></a>
-</div>
-</div>
-<div class="foot"><span>© 2026 Daniel Weiskopf</span><span>Haag, Niederösterreich</span></div>
-</div>
-</div>
-<script>
-document.getElementById('contact-form').addEventListener('submit',async function(e){e.preventDefault();const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});if(res.ok){this.reset();document.getElementById('form-success').style.display='block';}});
-</script>
-
-</body></html>
+  </style>
+ </head>
+ <body>
+  <nav>
+   <div class="wrap nav-inner">
+    <a class="logo" href="#top">
+     <i>
+     </i>
+     <span>
+      Daniel Weiskopf
+     </span>
+    </a>
+    <div class="nav-links">
+     <a href="#work">
+      <span>
+       01
+      </span>
+      Projekte
+     </a>
+     <a href="#about">
+      <span>
+       02
+      </span>
+      Über mich
+     </a>
+     <a href="#now">
+      <span>
+       03
+      </span>
+      Aktuell
+     </a>
+     <a href="#contact">
+      <span>
+       04
+      </span>
+      Kontakt
+     </a>
+    </div>
+   </div>
+  </nav>
+  <section class="hero" id="top">
+   <div class="wrap">
+    <h1>
+     Energietechnik aus Überzeugung: von der
+     <em>
+      Thermodynamik
+     </em>
+     bis zur Regelung, die sie im Alltag zum Laufen bringt.
+    </h1>
+    <div class="hero-row">
+     <p class="hero-sub">
+      Umwelt-, Verfahrens- und Energietechniker (MSc), seit Jahren Entwicklungsingenieur für Wärmepumpen mit Schwerpunkt Steuerungs- und Regelungstechnik. Tagsüber bringe ich Wärmepumpen bei, ein bisschen effizienter zu werden. In der Freizeit am liebsten mit der Familie draußen in der Natur, oder bei einem Konzert.
+     </p>
+     <dl class="meta">
+      <div class="portrait">
+       <!-- <img src="foto.jpg" alt="Daniel Weiskopf" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block"> -->
+      </div>
+      <div>
+       <dt>
+        Standort
+       </dt>
+       <dd>
+        Haag, Niederösterreich
+       </dd>
+      </div>
+      <div>
+       <dt>
+        Aktuell
+       </dt>
+       <dd>
+        Wärmepumpen · Smart Home · API
+       </dd>
+      </div>
+      <div>
+       <dt>
+        Interesse an
+       </dt>
+       <dd>
+        Energie · IoT · Fotografie · Musik
+       </dd>
+      </div>
+     </dl>
+    </div>
+    <div class="hero-foot">
+     <div class="stats">
+      <div class="stat">
+       <div class="stat-n">
+        10+
+       </div>
+       <div class="stat-l">
+        Jahre in Energie- und Verfahrenstechnik
+       </div>
+      </div>
+      <div class="stat">
+       <div class="stat-n">
+        MSc
+       </div>
+       <div class="stat-l">
+        Umwelt-, Verfahrens- und Energietechnik
+       </div>
+      </div>
+      <div class="stat">
+       <div class="stat-n">
+        2018
+       </div>
+       <div class="stat-l">
+        MSc-Abschluss am MCI Innsbruck
+       </div>
+      </div>
+     </div>
+     <div class="hero-cta">
+      <a class="btn" href="#work">
+       Projekte ansehen
+       <span aria-hidden="true">
+        ↓
+       </span>
+      </a>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="section" id="work">
+   <div class="wrap">
+    <div class="sec-head">
+     <div class="sec-n">
+      01 / Projekte
+     </div>
+     <h2 class="sec-title">
+      Ausgewählte Projekte
+     </h2>
+     <div class="sec-sub">
+      Was ich entworfen, geregelt oder vermessen habe.
+     </div>
+    </div>
+    <ol class="work">
+     <li class="work-row">
+      <div class="work-n">
+       <b>
+        01
+       </b>
+       <span class="lbl">
+        2026 →
+       </span>
+      </div>
+      <div class="work-main">
+       <div class="lbl work-kind">
+        Privatprojekt · eigenes Haus
+       </div>
+       <h3 class="work-title">
+        Telemetrie und Energieoptimierung mittels Raspberry Pi
+       </h3>
+      </div>
+      <p class="work-text">
+       Ein Raspberry Pi liest per Modbus und API diverse Daten verschiedenster Smart Home Teilnehmer, schreibt sie in eine InfluxDB und visualisiert sie auf einem E-Ink Display.
+      </p>
+      <div class="work-side">
+       <div class="work-tags">
+        <span>
+         Raspberry Pi
+        </span>
+        <span>
+         Python
+        </span>
+        <span>
+         Modbus
+        </span>
+        <span>
+         MQTT
+        </span>
+        <span>
+         API
+        </span>
+       </div>
+       <div class="work-metric">
+        <span class="metric-n">
+        </span>
+        Energiekosten Haushalt
+       </div>
+      </div>
+     </li>
+     <li class="work-row">
+      <div class="work-n">
+       <b>
+        02
+       </b>
+       <span class="lbl">
+        2025 →
+       </span>
+      </div>
+      <div class="work-main">
+       <div class="lbl work-kind">
+        Lernprojekt · Edge AI
+       </div>
+       <h3 class="work-title">
+        Edge AI mit M5Stack Core2
+       </h3>
+      </div>
+      <p class="work-text">
+       Einstieg in TinyML direkt auf dem Microcontroller: Gestenerkennung und einfache Klassifikation ohne Cloud-Anbindung. Der M5Stack Core2 läuft mit Arduino IDE und einem abgespeckten Modell, das vollständig lokal auf dem Gerät läuft, kein Server und keine Cloud nötig.
+      </p>
+      <div class="work-side">
+       <div class="work-tags">
+        <span>
+         M5Stack Core2
+        </span>
+        <span>
+         Arduino IDE
+        </span>
+        <span>
+         TinyML
+        </span>
+        <span>
+         IoT
+        </span>
+       </div>
+       <div class="work-metric">
+        <span class="metric-n">
+        </span>
+        lokal · kein Cloud-Zwang
+       </div>
+      </div>
+     </li>
+     <li class="work-row">
+      <div class="work-n">
+       <b>
+        03
+       </b>
+       <span class="lbl">
+        2025 →
+       </span>
+      </div>
+      <div class="work-main">
+       <div class="lbl work-kind">
+        Privatprojekt · eigenes Haus
+       </div>
+       <h3 class="work-title">
+        Ladeoptimierung des PV-Batteriespeichers
+       </h3>
+      </div>
+      <p class="work-text">
+       Anhand eines Wetterforecasts abgefragt über eine API wird der Ladezeitraum des Batteriespeichers optimiert. Dadurch sollen Einspeiseerträge maximiert und der Netzbezug minimiert werden.
+      </p>
+      <div class="work-side">
+       <div class="work-tags">
+        <span>
+         Python
+        </span>
+        <span>
+         API
+        </span>
+        <span>
+         Fronius
+        </span>
+       </div>
+       <div class="work-metric">
+        <span class="metric-n">
+        </span>
+        Energieoptimierung
+       </div>
+      </div>
+     </li>
+     <li class="work-row">
+      <div class="work-n">
+       <b>
+        04
+       </b>
+       <span class="lbl">
+        2024 →
+       </span>
+      </div>
+      <div class="work-main">
+       <div class="lbl work-kind">
+        Privatprojekt · Hausgarten
+       </div>
+       <h3 class="work-title">
+        Smartes Gewächshaus
+       </h3>
+      </div>
+      <p class="work-text">
+       Raspberry Pi, Pumpen und Relais zu einem autonomen Gewächshaus verschaltet: bewässert nach Bodenfeuchte, beschattet sich bei zu viel Sonne und schreibt Temperatur, Feuchte und Lichtwerte mit. Das Gemüse merkt nichts davon, und genau das ist der Punkt.
+      </p>
+      <div class="work-side">
+       <div class="work-tags">
+        <span>
+         Raspberry Pi
+        </span>
+        <span>
+         Python
+        </span>
+        <span>
+         Relais
+        </span>
+        <span>
+         Sensorik
+        </span>
+       </div>
+       <div class="work-metric">
+        <span class="metric-n">
+        </span>
+        autonom
+       </div>
+      </div>
+     </li>
+     <li class="work-row">
+      <div class="work-n">
+       <b>
+        05
+       </b>
+       <span class="lbl">
+        2018
+       </span>
+      </div>
+      <div class="work-main">
+       <div class="lbl work-kind">
+        Forschung · MCI Innsbruck
+       </div>
+       <h3 class="work-title">
+        Thermochemische Energiespeicherung am Beispiel des Mg(OH)
+        <sub>
+         2
+        </sub>
+        /MgO-Reaktionsnetzwerkes
+       </h3>
+      </div>
+      <p class="work-text">
+       Untersuchung des Speichermediums sowie Aufbau eines Testreaktors und Simulation dessen.
+      </p>
+      <div class="work-side">
+       <div class="work-tags">
+        <span>
+         Matlab
+        </span>
+        <span>
+         Versuchsaufbau
+        </span>
+        <span>
+         Simulation
+        </span>
+       </div>
+       <div class="work-metric">
+        <span class="metric-n">
+        </span>
+        Energiewende
+       </div>
+      </div>
+     </li>
+    </ol>
+   </div>
+  </section>
+  <section class="section" id="about">
+   <div class="wrap">
+    <div class="sec-head">
+     <div class="sec-n">
+      02 / Über mich
+     </div>
+     <h2 class="sec-title">
+      Über mich
+     </h2>
+    </div>
+    <div class="about-grid">
+     <div class="about-text">
+      <p>
+       Aufgewachsen in den Alpen, wo man die Gletscher Jahr für Jahr nach oben wandern sieht. Abstrakt fühlte sich das Klimathema von dort aus nie an. Auch das war ein Grund weshalb ich Umwelt-, Verfahrens-, und Energietechnik studiert habe.
+      </p>
+      <p>
+       Seit 2019 arbeite ich bei einem Wärmepumpenhersteller in der Entwicklung. Mein Bereich:
+       <strong>
+        Steuerung und Regelung
+       </strong>
+       : Firmware, Regelkreise, Zustandsmaschinen und die Felddaten, an denen sich zeigt, ob die Theorie gestimmt hat, sowie 3rd Level Support der Techniker im Feld.
+      </p>
+      <p>
+       Wenn ich nicht am Schreibtisch sitze, bin ich am liebsten draußen in der Natur: wandern, am Berg, in der Wand am Kletterturm oder einfach an der frischen Luft in unserem Garten. Genauso wichtig ist Musik. Ich höre breit und gehe so oft auf Konzerte, wie es geht, denn live klingt eben doch anders.
+      </p>
+      <p>
+       Daneben entstehen viele Bastelprojekte: ein Raspberry Pi, der Wetterdaten über eine API in die Ladelogik meines Fronius-Wechselrichters einbindet, und ein Terminal-Display für alle Haustechnik-Kennzahlen. Nicht weil es sein muss, sondern weil es Spaß macht.
+      </p>
+      <p class="about-pull">
+       Mir geht es um eine lebenswerte Zukunft für die nächste Generation. 
+      </p>
+     </div>
+     <div class="timeline">
+      <div class="tl-item active">
+       <div class="tl-y">
+        seit 2019
+       </div>
+       <div>
+        <div class="tl-t">
+         Entwicklungsingenieur
+        </div>
+        <div class="tl-sub">
+         Wärmepumpen · Steuerung &amp; Regelung
+        </div>
+       </div>
+      </div>
+      <div class="tl-item">
+       <div class="tl-y">
+        2016 — 2018
+       </div>
+       <div>
+        <div class="tl-t">
+         MSc, Umwelt-, Verfahrens- und Energietechnik
+        </div>
+        <div class="tl-sub">
+         MCI Innsbruck
+        </div>
+       </div>
+      </div>
+      <div class="tl-item">
+       <div class="tl-y">
+        2013 — 2016
+       </div>
+       <div>
+        <div class="tl-t">
+         BSc, Umwelt-, Verfahrens- und Energietechnik
+        </div>
+        <div class="tl-sub">
+         MCI Innsbruck
+        </div>
+       </div>
+      </div>
+      <div class="tl-item">
+       <div class="tl-y">
+        2006 — 2013
+       </div>
+       <div>
+        <div class="tl-t">
+         Inbetriebnahmetechniker
+        </div>
+        <div class="tl-sub">
+         Industriedrucksysteme · Inbetriebnahme und Endabnahme
+        </div>
+       </div>
+      </div>
+      <div class="tl-item">
+       <div class="tl-y">
+        2001 — 2005
+       </div>
+       <div>
+        <div class="tl-t">
+         Fachschule für Elektronik
+        </div>
+        <div class="tl-sub">
+         HTBLVA Innsbruck
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="section" id="now">
+   <div class="wrap">
+    <div class="sec-head">
+     <div class="sec-n">
+      03 / Aktuell
+     </div>
+     <h2 class="sec-title">
+      Aktuell
+     </h2>
+     <div class="sec-sub">
+      Stand: Oktober 2026.
+     </div>
+    </div>
+    <div class="now-grid">
+     <div class="now-item">
+      <div class="lbl">
+       Job
+      </div>
+      <div class="now-head">
+       Im Job
+      </div>
+      <p>
+       Entwicklung von neuen Wärmepumpensystemen, die die Energiewende antreiben.
+      </p>
+     </div>
+     <div class="now-item">
+      <div class="lbl">
+       Werkbank
+      </div>
+      <div class="now-head">
+       An der Werkbank
+      </div>
+      <p>
+       Zwei Projekte parallel: eine API-Bridge, die die Ladelogik meines Fronius-Batteriespeichers an die Wettervorhersage koppelt, sowie die Automatisierung des Gewächshauses (Bewässerung, Beschattung, Datenlogging).
+      </p>
+     </div>
+     <div class="now-item">
+      <div class="lbl">
+       Lektüre
+      </div>
+      <div class="now-head">
+       Lese gerade
+      </div>
+      <p>
+       Joey Goebel, „Sunset Flip". Daneben gerne Fachvideos zu Smart Home und erneuerbaren Energien: Stromspeicher, Wärmepumpen-Setups, kleine Bastellösungen aus der Community.
+      </p>
+     </div>
+     <!-- <div class="now-item"><div class="lbl">Suche</div><div class="now-head">Suche</div><p>Ein Team, das echte Hardware für die Energiewende baut. Bevorzugt im Raum Linz, Steyr, Amstetten — oder remote.</p></div> -->
+    </div>
+   </div>
+  </section>
+  <div class="contact" id="contact">
+   <div class="wrap contact-inner">
+    <div class="contact-top">
+     <div class="contact-eyebrow">
+      04 / Kontakt
+     </div>
+     <h2 class="contact-h">
+      Lust auf ein Gespräch?
+      <br/>
+      <em>
+       Schreib mir.
+      </em>
+     </h2>
+     <form action="https://api.web3forms.com/submit" class="contact-form" id="contact-form" method="POST">
+      <input name="access_key" type="hidden" value="80e1e346-2b0c-4d53-8830-ddc244b1aaaa"/>
+      <input name="subject" type="hidden" value="Neue Nachricht von deinem Portfolio"/>
+      <input name="redirect" type="hidden" value="false"/>
+      <label for="cf-name">
+       Name
+      </label>
+      <input id="cf-name" name="name" placeholder="Dein Name" required="" type="text"/>
+      <label for="cf-email">
+       E-Mail
+      </label>
+      <input id="cf-email" name="email" placeholder="deine@email.at" required="" type="email"/>
+      <label for="cf-msg">
+       Nachricht
+      </label>
+      <textarea id="cf-msg" name="message" placeholder="Worum geht's?" required=""></textarea>
+      <button type="submit">
+       Absenden →
+      </button>
+      <p class="form-success" id="form-success">
+       ✓ Danke — ich melde mich bald!
+      </p>
+     </form>
+     <div class="contact-links">
+      <a class="c-link" href="https://github.com/WeisDan" rel="noreferrer" target="_blank">
+       <span>
+        GitHub
+       </span>
+       <span class="c-handle">
+        @WeisDan ↗
+       </span>
+      </a>
+      <a class="c-link" href="https://linkedin.com/in/daniel-weiskopf" rel="noreferrer" target="_blank">
+       <span>
+        LinkedIn
+       </span>
+       <span class="c-handle">
+        /daniel-weiskopf ↗
+       </span>
+      </a>
+     </div>
+    </div>
+    <div class="foot">
+     <span>
+      © 2026 Daniel Weiskopf
+     </span>
+     <span>
+      Haag, Niederösterreich
+     </span>
+    </div>
+   </div>
+  </div>
+  <script>
+   document.getElementById('contact-form').addEventListener('submit',async function(e){e.preventDefault();const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});if(res.ok){this.reset();document.getElementById('form-success').style.display='block';}});
+  </script>
+ </body>
+</html>
